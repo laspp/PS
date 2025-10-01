@@ -10,4 +10,5 @@
   - predavanja:
       [uvod](predavanja/01-uvod/uvod.md),
       [arhitekture](predavanja/02-arhitekture/arhitekture.md)
-  - vaje: odpadejo
+  - vaje: jih še ni
+  
