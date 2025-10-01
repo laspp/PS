@@ -1,8 +1,0 @@
-Client {"Client":1}
-Initialization Complete
-Client {"Client":2}
-INFO Sending Message
-Client {"Client":3, "Server":4}
-INFO Received Message from server
-Client {"Client":4, "Server":4}
-INFO Client finished
