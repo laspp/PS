@@ -43,6 +43,10 @@
 
 ## Ocena
 
+- Domače naloge
+  - v semestru bo 8 kratkih domačih nalog, ki jih morate preko vmesnika spletne učilnice oddati v predpisanih rokih
+  - za pristop k izpitu morate oddati vsaj 6 nalog
+  
 - 50 % iz projektne naloge
 
   - predstavljena bo sredi semestra, delate jo v parih
@@ -50,5 +54,4 @@
   - uspešno zagovorjena projektna naloga je pogoj za pristop k izpitu
 
 - 50 % pisni izpit
-  - v semestru bo 8 kratkih domačih nalog, ki jih morate preko vmesnika spletne učilnice oddati v predpisanih rokih; za pristop k izpitu morate oddati vsaj 6 nalog
-  - pisni izpit opravite, če zberete vsaj 50 % točk
+  - izpit opravite, če zberete vsaj 50 % točk
