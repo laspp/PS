@@ -88,24 +88,6 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
 - niti so "lahki" procesi s poenostavljenim upravljanjem virov
 - lahko jih razumemo tudi kot "napredne" funkcije, ki imajo svoje izvajalno okolje
 
-## Programski in izvajalni model
-
-- programski model predstavlja logično organizacijo programa
-  - mora biti kar se da splošen, da je prenosljiv med različnimi sistemi
-- izvajalni model natančno podaja način izvajanja na ciljnem sistemu
-  - odvisen od strojne opreme in programskih okolij
-- izvajanje večnitnega programa
-  - sočasno: več niti v procesu se izvaja (rešuje problem) v istem časovnem okviru
-  - vzporedno: različne niti se hkrati (v istem trenutku) izvajajo na različnih procesorskih jedrih
-  - izvajanje niti je lahko sočasno, ni pa vzporedno (dodeljevanje časovnih rezin)
-  - če je izvajanje niti vzporedno, je tudi sočasno (hkratno izvajanje na več procesorskih jedrih)
-  - sočasnost je programski vzorec, vzporednost je lastnost strojne opreme
-  - dobro napisan program s podporo za sočasnost
-    - se bo lahko izvajal sočasno na enem procesorskem jedru ali
-    - vzporedno na več procesorskih jedrih hkrati
-
-    <img src="slike/socasno-zaporedno-vzporedno.png" width="75%"/>
-
 ### Življenjski cikel niti
 
 <img src="slike/nit-zivljenski-cikel.png" width="75%">
@@ -126,6 +108,24 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
 - prepletanje računanja in komunikacije (računanje se lahko izvaja medtem, ko nit čaka na V/I)
 - večnitni strežniki (spletne storitve, ena nit za vsakega uporabnika)
 - grafični vmesniki (vsaj ena dodatna nit za obdelovanje dogodkov)
+
+## Programski in izvajalni model
+
+- programski model predstavlja logično organizacijo programa
+  - mora biti kar se da splošen, da je prenosljiv med različnimi sistemi
+- izvajalni model natančno podaja način izvajanja na ciljnem sistemu
+  - odvisen od strojne opreme in programskih okolij
+- izvajanje večnitnega programa
+  - sočasno: več niti v procesu se izvaja (rešuje problem) v istem časovnem okviru
+  - vzporedno: različne niti se hkrati (v istem trenutku) izvajajo na različnih procesorskih jedrih
+  - izvajanje niti je lahko sočasno, ni pa vzporedno (dodeljevanje časovnih rezin)
+  - če je izvajanje niti vzporedno, je tudi sočasno (hkratno izvajanje na več procesorskih jedrih)
+  - sočasnost je programski vzorec, vzporednost je lastnost strojne opreme
+  - dobro napisan program s podporo za sočasnost
+    - se bo lahko izvajal sočasno na enem procesorskem jedru ali
+    - vzporedno na več procesorskih jedrih hkrati
+
+    <img src="slike/socasno-zaporedno-vzporedno.png" width="75%"/>
 
 ## Naloge: ko niti niso dovolj
 
