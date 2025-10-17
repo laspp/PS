@@ -19,3 +19,6 @@
     [programska oprema](predavanja/03-programska-oprema/programska-oprema.md),
     [SLURM](predavanja/04-slurm/slurm.md)
   - vaje: jih še ni
+
+- Teden 03: 
+  - vaje: [SLURM](vaje/01-uporaba-gruce/Uporaba_gruce.md)
