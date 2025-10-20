@@ -4,10 +4,10 @@ import (
 	"fmt"
 )
 
-var dataStream = make(chan int)
+var dataStream = make(chan string)
 
 func writer() {
-	dataStream <- 13 // gorutina nikoli ne zapiše vrednosti v kanal
+	dataStream <- "13" // gorutina nikoli ne zapiše vrednosti v kanal
 	return
 }
 

@@ -21,6 +21,6 @@
   - vaje: jih še ni
 
 - Teden 03:
-  predavanja:
-  [jezik go](predavanja/05-go/go.md)
+  - predavanja:
+    [jezik go](predavanja/05-go/go.md)
   - vaje: [SLURM](vaje/01-uporaba-gruce/Uporaba_gruce.md)

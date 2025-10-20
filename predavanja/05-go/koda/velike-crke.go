@@ -29,7 +29,7 @@ func getLettersFromMessage(message string) <-chan rune {
 	return letterStream
 }
 
-func getMessageFromLetters(letterStream <-chan rune) string {
+func getUppercaseMessageFromLetters(letterStream <-chan rune) string {
 	capsMessage := ""
 	for letter := range letterStream {
 		capsMessage += string(unicode.ToUpper(letter))
@@ -42,6 +42,6 @@ func main() {
 
 	letterStream := getLettersFromMessage(message)
 
-	capsMessage := getMessageFromLetters(letterStream)
+	capsMessage := getUppercaseMessageFromLetters(letterStream)
 	fmt.Println(message, " --> ", capsMessage)
 }
