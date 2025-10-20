@@ -219,15 +219,16 @@
   - branje iz odprtega in zaprtega kanala
 
     ```go
-    dataStream <- "314"
-    value, ok := <-dataStream       // 314, true
+    dataStream <- "test"
+    value, ok := <-dataStream       // "test", true
     close(dataStream)
-    value, ok := <-dataStream       // 0, false
+    value, ok := <-dataStream       // "", false
     ```
 
   - s tem, ko zapremo kanal, povemo bralnim gorutinam, da v kanal nihče več ne bo vpisoval
   - branje iz zaprtega kanala je vedno mogoče
-  - potem, ko zapremo kanal, gorutine, ki čakajo na vrednost, preberejo privzeto vrednost ("" za string, 0 za int) in nadaljujejo
+  - iz zaprtega kanala lahko preberemo vse vrednosti, ki so še v medpomnilniku
+  - ko v zaprtem kanalu ni več vrednosti, gorutine preberejo privzeto vrednost ("" za string, 0 za int) in nadaljujejo
 
     - v bistvu na ta način lahko pošljemo signal vsem gorutinam, da nadaljujejo
     - bolj učinkovito, kot za vsako čakajočo gorutino vpisati vrednost v kanal
