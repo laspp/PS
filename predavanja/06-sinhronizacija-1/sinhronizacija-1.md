@@ -103,6 +103,7 @@
   - ukaz SC uspe - vrednost se bo zapisala v pomnilnik - samo v primeru, če je vmes ni spremenil noben drug procesor
   - ali je bilo zapisovanje uspešno ali ne, pokaže ustrezna zastavica
   - če je bilo pisanje uspešno, vemo, da pri operaciji ni prišlo do tveganega stanja; če je bilo pisanje neuspešno, je odvisno od programa ali bo poskusil ponovno ali ne (izvajanje ukazov LL/SC v zanki)
+- ukaza TAS in FAA vsakič pišeta v pomnilnik, zato ves čas prihaja do razveljavitev predpomnilnika in s tem do ogromno prometa na vodilu; ukaza CAS in LL/SC lahko uporabljata navadno branje, zapisujeta le, če je pogoj izpolnjen, zato je dosti manj razveljavitev in prometa na vodilu; pri drugem paru ukazov je primerjanje ključavnic veliko hitrejše, rešitev je bolj razširljiva (primerna za sisteme z mnogo jedri)
 
 ### Kritični odsek z eno ključavnico
 
@@ -112,8 +113,8 @@
 
   - jezik go pozna posebno strukturo, imenovano ključavnica
   - rezultat je pravilen
-  - ni več nepotrebnega čakanja (primer pi-4)
-  - s **ključavnico** (*angl.* mutex - MUTual EXclusion) definiramo kritični odsek
+  - ni več nepotrebnega čakanja (primer pi-4.go)
+  - s **ključavnico** (*angl.* mutex - MUTual EXclusion) zavarujemo kritični odsek
   - ključavnice zagotavljajo, da v kritični odsek lahko vstopi samo ena gorutina naenkrat
   
 - posebni ukazi procesorja zagotavljajo atomarnost pri zaklepanju ključavnice
