@@ -4,7 +4,7 @@
 
 - najprej jezik C, s katerim so lahko dobro izkoristili malo virov, ki so bili na voljo; čista sintaksa, enostavnost programiranja nista prioriteti
 - kasneje C++, C#, java podpirajo večnitno programiranje, čiščenje pomnilnika, z novimi in novimi funkcionalnosti vedno bolj zmogljivi
-- jezika python/javascript: ogromna skupnost, veliko paketov, ni prevajan, fokus ni na zmogljivosti
+- jezika python/javascript: ogromna skupnost, veliko paketov, nista prevajana, fokus ni na zmogljivosti
 - niša: zmogljiv, prevajan, večplatformni jezik z vgrajeno podporo za vzporedenje (sistemsko programiranje)
 - statično tipiziran jezik, ni objekten, podpora za pisanje vmesnikov
 
@@ -30,7 +30,7 @@
 
 - model opravilo kanal (Foster, 1995), model CSP, *angl.* Communicating Sequential Processes (Hoare, 1978)
 
-  - 1978: ali uporabljati stavek goto, osnutki objektnega programiranja, nihče ne razmišlja o sočasnosti
+  - leto 1978: ali uporabljati stavek goto, osnutki objektnega programiranja, nihče ne razmišlja o sočasnosti
   - CSP predstavljen kot programski jezik
   - model
     - sestavni deli: vhod, izhod, sekvenčna funkcija (proces, naloga)
@@ -88,7 +88,7 @@
   - če v glavni gorutini počakamo pred zaključkom programa, dobimo izpis
   - še vedno ni bilo pridruževanja dodatne gorutine
 
-- uporabimo vzorce razcepi-pridruži
+- uporabimo vzorec razcepi-pridruži
 
   [pozdrav-4.go](koda/pozdrav-4.go)
   - uporabimo sinhronizacijo, paket `sync`
@@ -271,7 +271,7 @@
 ### Sinhronizacija s kanali
 
 - kanal uporabimo kot sinhronizacijski element, po njem nič ne prenašamo
-- da gre za sinhronizacijski element dodatno poudarimo s kanalom za podatkovni tip `struct{}` (prazna struktura)
+- da gre za sinhronizacijski element, dodatno poudarimo s kanalom za podatkovni tip `struct{}` (prazna struktura)
 
 - primer: [razglas.go](koda/razglas.go)
 
@@ -281,7 +281,7 @@
 
 ### Delo z več kanali
 
-- stavek `select` je posebnost jezika go, pomemben element pri obvladovanju sočastnosti
+- stavek `select` je posebnost jezika go, pomemben element pri obvladovanju sočasnosti
 - podobno, kot s kanali povezujemo gorutine, s stavkom `select` povezujemo kanale
 - sintaksa stavka `select` je zelo podobna sintaksi stavka `switch`
   - stavka `select` in `switch` vključujeta množico vej, podanih s stavkom `case`
