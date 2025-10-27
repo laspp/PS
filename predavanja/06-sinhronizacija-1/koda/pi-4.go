@@ -1,6 +1,8 @@
 // računanje pi po metodi Monte Carlo
 // vzporedno, uvedemo spremenljivko lock
-// še vedno imamo tvegano stanje, počasno računanje
+// še vedno imamo tvegano stanje: procesor lahko obrne vrstni red izvajanja vrstic: pi.shots++ in lock = (lock + 1) % goroutines
+// počasno računanje: gorutina 1 je posodobila vrednost; dokler ne pride do usklajevanja predpomnilnikov,
+//                    druga gorutina bere staro vrednosti in čaka v zanki
 
 package main
 
