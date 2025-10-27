@@ -684,6 +684,13 @@ Napišite naslednje funkcije:
 - `dodajOceno(studenti map[string]Student, vpisnaStevilka string, ocena int)`, ki študentu z dano vpisno številko doda v seznam ocen novo oceno. Pred dodajanjem ocene naj funkcija preveri, ali je ocena v ustreznem območju (med 0 in 10). Če študent ne obstaja, naj funkcija izpiše obvestilo, da študenta ni na seznamu.
  - `povprecje(studenti map[string]Student, vpisnaStevilka string) float64` vrne povprečno oceno študenta. Če študent ne obstaja, naj funkcija vrne `-1.0`. Če je število ocen domačih nalog manjše od `6`, funkcija vrne povprečje `0.0`.
  - `izpisRedovalnice(studenti map[string]Student)`, ki izpiše imena in priimke vseh študentov in njihove ocene.
+	Primer izpisa:
+	```
+	REDOVALNICA:
+	63210001 - Ana Novak: [10 9 8]
+	63210002 - Boris Kralj: [6 7 5 8]
+	63210003 - Janez Novak: [4 5 3 5]
+	```
  - `izpisiKoncniUspeh(studenti map[string]Student)`, ki za vsakega študenta izpiše njegovo ime in priimek ter povprečno oceno. Znotraj funkcije uporabite funkcijo `povprecje` Poleg tega naj za posameznega študenta izpiše tudi komentar:
   
    - če je povprečna ocena >=9 naj izpiše `Odličen študent!`;
