@@ -28,3 +28,4 @@
 - Teden 04:
   - predavanja:
     [sinhronizacija: ključavnice](predavanja/06-sinhronizacija-1/sinhronizacija-1.md)
+  - vaje: [jezik go](02-programski-jezik-go/Uvod_v_go.md) 
