@@ -7,8 +7,8 @@ import (
 var dataStream = make(chan string)
 
 func writer() {
-	dataStream <- "13" // gorutina nikoli ne zapiše vrednosti v kanal
 	return
+	dataStream <- "13" // gorutina nikoli ne zapiše vrednosti v kanal
 }
 
 func main() {

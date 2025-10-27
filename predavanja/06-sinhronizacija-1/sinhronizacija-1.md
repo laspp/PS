@@ -86,15 +86,15 @@
   - zaklepanje pomnilniškega vodila ali rešitev v pomnilniku
   - če je stara vrednost 0, program po ukazu lahko nadaljuje
   - če je stara vrednost 1, potem je ključavnica nastavljena od prej in mora ponovno poskusiti (*angl.* spin lock)
-- primerjaj in zamenjaj (*angl.* [compare-and-swap](https://en.wikipedia.org/wiki/Compare-and-swap), CAS)
-  - primerja trenutno vrednost, zapisano na pomnilniški lokaciji, in pričakovano vrednost; če sta enaki, trenutno vrednost nastavi na novo vrednost
-  - podobna rešitev kot preveri in nastavi
-  - Intel: `lock`: v okviru protokola MESI: najprej se uskladi predpomnilniški blok med vsemi procesorskimi jedri, nato je v ekskluzivni lasti procesorskega jedra, ki je izdalo ukaz z `lock`; dokler se izvaja ukaz, ga ne more uporabljati nobeno drugo procesorsko jedro
 - prevzemi in dodaj (*angl.* [fetch-and-add](https://en.wikipedia.org/wiki/Fetch-and-add), FAA)
   - vrne staro vrednost in na pomnilniškem naslovu atomarno poveča vrednost
   - ker je operacija atomarna, je stara vrednost dodeljena eni sami niti
   - podobna rešitev kot preveri in nastavi
-- nalaganje in pogojno shranjevanje (*angl.* [load-liked/store-conditional](https://en.wikipedia.org/wiki/Load-link/store-conditional), LL/SC)
+- primerjaj in zamenjaj (*angl.* [compare-and-swap](https://en.wikipedia.org/wiki/Compare-and-swap), CAS)
+  - primerja trenutno vrednost, zapisano na pomnilniški lokaciji, in pričakovano vrednost; če sta enaki, trenutno vrednost nastavi na novo vrednost
+  - podobna rešitev kot preveri in nastavi
+  - Intel: `lock`: v okviru protokola MESI: najprej se uskladi predpomnilniški blok med vsemi procesorskimi jedri, nato je v ekskluzivni lasti procesorskega jedra, ki je izdalo ukaz z `lock`; dokler se izvaja ukaz, ga ne more uporabljati nobeno drugo procesorsko jedro
+- nalaganje in pogojno shranjevanje (*angl.* [load-link/store-conditional](https://en.wikipedia.org/wiki/Load-link/store-conditional), LL/SC)
   - prvič se pojavi pri procesorjih RISC, danes v ARM in RISC V
   - s parom nalaganje in pogojno shranjevanje procesor zagotavlja atomarno posodabljanje pomnilnika v večjedrnih sistemih
   - ni potrebno zaklepanje pomnilniških lokacij za izključni dostop enega procesorja
