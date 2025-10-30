@@ -31,7 +31,7 @@
   - vaje: [jezik go](vaje/02-programski-jezik-go/Uvod_v_go.md) 
 
 - Teden 05:
-<!--  - predavanja:
-    [sinhronizacija: semaforji in bralno-pisalne ključavnice](predavanja/06-sinhronizacija-2/sinhronizacija-2.md)
-    [sinhronizacija: pogojne spremenljivke](predavanja/06-sinhronizacija-2/sinhronizacija-2.md) -->
+  - predavanja:
   - vaje:
+<!--    [sinhronizacija: semaforji in bralno-pisalne ključavnice](predavanja/06-sinhronizacija-2/sinhronizacija-2.md)
+    [sinhronizacija: pogojne spremenljivke](predavanja/06-sinhronizacija-2/sinhronizacija-2.md) -->
