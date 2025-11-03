@@ -11,7 +11,7 @@ import (
 )
 
 var wg sync.WaitGroup
-var fork [5]chan int
+var fork [5]chan struct{}
 
 func session(dishes int, id int) {
 	defer wg.Done()
@@ -28,10 +28,10 @@ func session(dishes int, id int) {
 		dish++
 		fmt.Println("Philosopher", id, "is thinking.")
 		time.Sleep(100 * time.Millisecond)
-		fork[forkId1] <- 1
+		fork[forkId1] <- struct{}{}
 		fmt.Println("Philosopher", id, "took fork", forkId1, ".")
 		time.Sleep(100 * time.Millisecond)
-		fork[forkId2] <- 1
+		fork[forkId2] <- struct{}{}
 		fmt.Println("Philosopher", id, "took fork", forkId2, ".")
 		time.Sleep(100 * time.Millisecond)
 		fmt.Println("Philosopher", id, "is eating", dish, ".")
@@ -51,7 +51,7 @@ func main() {
 
 	// inicializiramo kanale
 	for i := 0; i < 5; i++ {
-		fork[i] = make(chan int, 1)
+		fork[i] = make(chan struct{}, 1)
 	}
 
 	// razdelimo delo med gorutine in jih zaženemo

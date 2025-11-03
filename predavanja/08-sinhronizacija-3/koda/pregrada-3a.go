@@ -1,9 +1,9 @@
 // Pregrada
 // ključavnica, princip dvojih vrat:
-// 		faza (phase) = 0: prehajanje čez prva vrata
-//		faza 		 = 1: prehajanje čez druga vrata
-//		g				: število gorutin za prvimi in pred drugimi vrati
-// tvegano stanje zaradi hkratnega branja in pisanja (vrtenje v neskončni zanki)
+// 		faza (phase) = 0: prehajanje čez vrata 0
+//		faza 		 = 1: prehajanje čez vrata 1
+//		g				: število gorutin med vrati
+// tveganega stanja ni več
 
 package main
 
@@ -19,7 +19,7 @@ var wg sync.WaitGroup
 var goroutines int
 var g int = 0
 var lock sync.Mutex
-var phase int = 0
+var phase int = 1 // vrata 0 so zaprta, odpre jih prva gorutina
 
 func barrier(id int, printouts int) {
 	defer wg.Done()
@@ -33,15 +33,13 @@ func barrier(id int, printouts int) {
 		// pregrada - začetek
 		// vrata 0
 		lock.Lock()
-		if phase == 1 { // ko gorutine prvič prihajajo do pregrade, je phase == 0
-			if g > 0 {
-				lock.Unlock()
-				for phase == 1 {
-				}
-				lock.Lock()
-			} else {
-				phase = 0 // prehajanje čez vrata 0 se začne, ko zadnja gorutina zapusti vrata 1
+		if g > 0 {
+			lock.Unlock()
+			for phase == 1 {
 			}
+			lock.Lock()
+		} else {
+			phase = 0 // prehajanje čez vrata 0 se začne, ko zadnja gorutina zapusti vrata 1
 		}
 		g++
 		lock.Unlock()

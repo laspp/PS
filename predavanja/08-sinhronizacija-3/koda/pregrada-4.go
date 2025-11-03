@@ -19,8 +19,8 @@ var wg sync.WaitGroup
 var goroutines int
 var g int = 0
 var lock sync.Mutex
-var arrived = make(chan struct{}, 1)
-var left = make(chan struct{}, 1)
+var door1 = make(chan struct{}, 1)
+var door0 = make(chan struct{}, 1)
 
 func barrier(id int, printouts int) {
 
@@ -33,27 +33,27 @@ func barrier(id int, printouts int) {
 		fmt.Println("Gorutine", id, "printout", i)
 
 		// pregrada - začetek
-		// vrata 0
+		// vrata 0 odprta
 		lock.Lock()
 		g++
 		if g == goroutines {
 			for i := 0; i < goroutines; i++ {
-				arrived <- struct{}{}
+				door1 <- struct{}{} // zadnja gorutina odpre vrata 1
 			}
 		}
 		lock.Unlock()
-		<-arrived
+		<-door1 // gorutine čakajo pred zaprtimi vrati
 
-		// vrata 1
+		// vrata 1 odprta
 		lock.Lock()
 		g--
 		if g == 0 {
 			for i := 0; i < goroutines; i++ {
-				left <- struct{}{}
+				door0 <- struct{}{} // zadnja gorutina odpre vrata 0
 			}
 		}
 		lock.Unlock()
-		<-left
+		<-door0 // gorutine čakajo pred zaprtimi vrati
 		// pregrada - konec
 	}
 }

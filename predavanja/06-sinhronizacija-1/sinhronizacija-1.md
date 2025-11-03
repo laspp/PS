@@ -223,7 +223,7 @@
     - ključavnice zaklepamo vedno v definiranem vrstnem redu - posamezna gorutina naj nikoli ne skuša zakleniti ključavnice $n$, če ima zaklenjeno ključavnico $m$, pri čemer je $n < m$
 
   - pogojno zaklepanje (dinamično)
-    - če zaradi narave problema ne moremo uporabiti hierarhije ključavnic
+    - če zaradi narave problema ne moremo uporabiti hierarhije ključavnic (potem, ko smo nekaj ključavnic že zaklenili, ugotovimo, da moramo še kakšno)
     - zaklenemo prvo ključavnico, potem poskusimo zakleniti še vse ostale
     - če katere od ključavnic ne uspemo zakleniti, sprostimo vse, nato ponovno poskusimo od začetka, z zaklepanjem prve ključavnice
 
