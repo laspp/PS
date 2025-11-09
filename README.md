@@ -35,4 +35,9 @@
     [sinhronizacija: semaforji in bralno-pisalne ključavnice](predavanja/07-sinhronizacija-2/sinhronizacija-2.md)
   - vaje: [sočasno programiranje v go](vaje/03-gorutine/Socasno_programiranje_go.md)
 
-<!--    [sinhronizacija: pogojne spremenljivke](predavanja/08-sinhronizacija-3/sinhronizacija-3.md) -->
+- Teden 06:
+  - predavanja:
+    [sinhronizacija: pogojne spremenljivke](predavanja/08-sinhronizacija-3/sinhronizacija-3.md)
+    [varna sočasnost](predavanja/09-varna-socasnost/varna-socasnost.md)
+  - vaje:
+
