@@ -33,15 +33,18 @@
 
   - [pregrada-3a.go](koda/pregrada-3a.go)
     - pregrado si predstavljamo kot dvoja vrata
-      - vrata 1 se odprejo šele, ko so vse gorutine šle skozi vrata 0 (faza 0)
-      - vrata 0 se odprejo potem, ko so vse gorutine šle skozi vrata 1 (faza 1)
-      - spremenljivki števec gorutin med vrati (`g`) in faza (`phase`)
+      - spremenljivki števec gorutin med vrati (`g`) in faza (`phase`), ki določa, katera vrata so odprta
+      - vedno so odprta ena sama vrata (v fazi 0 vrata 0, v fazi 1 vrata 1)
+      - gorutine se ustavljajo pred zaprtimi vrati
+      - zaprta vrata odpre zadnja gorutina, ki pride do njih, in hkrati zapre do sedaj odprta vrata
+      - vrata 1 se odprejo, ko so vse gorutine šle skozi vrata 0 (takrat se faza zamenja iz 0 v 1)
+      - vrata 0 se odprejo, ko so vse gorutine šle skozi vrata 1 (takrat se faza zamenja iz 1 v 0)
       - jezik go zazna tvegana stanja - ena gorutina piše, druga bere
 
         <img src="slike/pregrada-vrata.png" width="75%" />
 
   - [pregrada-3b.go](koda/pregrada-3b.go)
-    - rešitev z dvojimi vrati v kateri ne dovolimo hkratnih pisanj in branj 
+    - rešitev z dvojimi vrati, v kateri ne dovolimo hkratnih pisanj in branj
 
   - [pregrada-4.go](koda/pregrada-4.go)
     - podobna rešitev kot [pregrada-3b.go](koda/pregrada-3b.go)
