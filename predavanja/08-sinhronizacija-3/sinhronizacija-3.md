@@ -45,6 +45,7 @@
 
   - [pregrada-3b.go](koda/pregrada-3b.go)
     - rešitev z dvojimi vrati, v kateri ne dovolimo hkratnih pisanj in branj
+    - uporabimo bralno-pisalno ključavnico
 
   - [pregrada-4.go](koda/pregrada-4.go)
     - podobna rešitev kot [pregrada-3b.go](koda/pregrada-3b.go)

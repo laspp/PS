@@ -37,7 +37,13 @@
 
 - Teden 06:
   - predavanja:
-    [sinhronizacija: pogojne spremenljivke](predavanja/08-sinhronizacija-3/sinhronizacija-3.md)
+    [sinhronizacija: pogojne spremenljivke](predavanja/08-sinhronizacija-3/sinhronizacija-3.md),
     [varna sočasnost](predavanja/09-varna-socasnost/varna-socasnost.md)
   - vaje:
 
+<!-- ### Sistemi s porazdeljenim pomnilnikom
+
+- Teden 07:
+  - predavanja: posredovanje sporočil:
+    [osnove](predavanja/10-posredovanje-sporocil-1/posredovanje-sporocil-1.md)
+-->
