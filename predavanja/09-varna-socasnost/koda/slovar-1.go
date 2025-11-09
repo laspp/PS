@@ -12,17 +12,17 @@ import (
 
 var wg sync.WaitGroup
 
-func writeToMap(id int, steps int, dict map[int]int) {
+func writeToMap(id int, steps int, dict *map[int]int) {
 	defer wg.Done()
 	for i := 0; i < steps; i++ {
-		dict[id] = i
+		(*dict)[id] = i
 	}
 }
 
-func readFromMap(id int, steps int, dict map[int]int) {
+func readFromMap(id int, steps int, dict *map[int]int) {
 	defer wg.Done()
 	for i := 0; i < steps; i++ {
-		_ = dict[id]
+		_ = (*dict)[id]
 	}
 }
 
@@ -41,11 +41,11 @@ func main() {
 	timeStart := time.Now()
 	for i := 0; i < *gwPtr; i++ {
 		wg.Add(1)
-		go writeToMap(i, *sPtr, dict)
+		go writeToMap(i, *sPtr, &dict)
 	}
 	for i := 0; i < *grPtr; i++ {
 		wg.Add(1)
-		go readFromMap(i, *sPtr, dict)
+		go readFromMap(i, *sPtr, &dict)
 	}
 	wg.Wait()
 

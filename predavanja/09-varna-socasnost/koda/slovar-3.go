@@ -16,14 +16,14 @@ func writeToMap(id int, steps int, dict *sync.Map) {
 	defer wg.Done()
 	dict.Store(id, 0)
 	for i := 0; i < steps; i++ {
-		dict.Store(id, i)
+		(*dict).Store(id, i)
 	}
 }
 
 func readFromMap(id int, steps int, dict *sync.Map) {
 	defer wg.Done()
 	for i := 0; i < steps; i++ {
-		_, _ = dict.Load(id)
+		_, _ = (*dict).Load(id)
 	}
 }
 

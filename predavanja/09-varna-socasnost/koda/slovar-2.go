@@ -13,20 +13,20 @@ import (
 var wg sync.WaitGroup
 var lock sync.RWMutex
 
-func writeToMap(id int, steps int, dict map[int]int) {
+func writeToMap(id int, steps int, dict *map[int]int) {
 	defer wg.Done()
 	for i := 0; i < steps; i++ {
 		lock.Lock()
-		dict[id] = i
+		(*dict)[id] = i
 		lock.Unlock()
 	}
 }
 
-func readFromMap(id int, steps int, dict map[int]int) {
+func readFromMap(id int, steps int, dict *map[int]int) {
 	defer wg.Done()
 	for i := 0; i < steps; i++ {
 		lock.RLock()
-		_ = dict[id]
+		_ = (*dict)[id]
 		lock.RUnlock()
 	}
 }
@@ -46,11 +46,11 @@ func main() {
 	timeStart := time.Now()
 	for i := 0; i < *gwPtr; i++ {
 		wg.Add(1)
-		go writeToMap(i, *sPtr, dict)
+		go writeToMap(i, *sPtr, &dict)
 	}
 	for i := 0; i < *grPtr; i++ {
 		wg.Add(1)
-		go readFromMap(i, *sPtr, dict)
+		go readFromMap(i, *sPtr, &dict)
 	}
 	wg.Wait()
 
