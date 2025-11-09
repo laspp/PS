@@ -78,7 +78,7 @@ Porazdeljeni sistem je tisti, v katerem okvara računalnika, za katerega sploh n
   - internetna plast s protokolom IP (*angl.* internet protocol) skrbi za usmerjanje paketov podatkov v omrežju; paketi se lahko izgubijo, podvojijo, pokvarijo, ne prihajajo v pravem vrstnem redu; naprave na tej plasti so usmerjevalniki
   - transportna plast s protokolom TCP (*angl.* transmission control protocol) skrbi za zanesljiv prenos podatkov med dvema procesoma (ni izgube paketov, podvajanja, napak); da imamo na istem vozlišču lahko več aktivnih procesov, vsakemu procesu dodelimo vrata (*angl.* port); vrata predstavljajo logično oznako procesa v omrežju
   - aplikacijska plast s protokoli kot sta HTTP, DNS (*angl.* domain name server) je tista, ki jo najpogosteje uporabljamo
-- višje plasti so kompleksnejše vendar uporabljajo bolj zanesljive protokole
+- višje plasti so kompleksnejše, vendar uporabljajo bolj zanesljive protokole
   - TCP nadgrajuje IP
   - TLS (*angl.* transport layer security) med transportno in aplikacijsko plastjo nadgrajuje TCP
 
@@ -86,14 +86,14 @@ Porazdeljeni sistem je tisti, v katerem okvara računalnika, za katerega sploh n
 
 ## Zanesljiv prenos podatkov (TCP) [UDS:2-2.4]
 
-- prenos paketa podatkov od pošiljatelja do sprejemnika lahko poteka čez množico usmerjevalnikov 
+- prenos paketa podatkov od pošiljatelja do sprejemnika lahko poteka čez množico usmerjevalnikov
 - za pravilno dostavo paketa rabimo naslove vozlišč (IPv4 $2^{32}$ in IPv6 $2^{128}$) in usmerjevalne tabele
 - protokol TCP podatkovni tok razbije na množico paketov (*angl.* segmentov)
 - protokol TCP nadgrajuje protokol IP z zagotavljanjem zanesljivosti prenosa paketov: zagotavlja vrstni red paketov, ni manjkajočih in podvojenih paketov, v paketih ni napak, preprečuje preobremenitev omrežja
   - sprejemnik mora vsak paket potrditi; če ga ne, ga bo, po preteku dovoljenega časa za prenos, pošiljatelj še enkrat poslal
-  - vsak paket ima kontrolno vsoto za preverjanje pravilnosti vsebine paketa
+  - vsak paket ima kontrolno vsoto za preverjanje pravilnosti vsebine
   - paketi so oštevilčeni, lahko ugotovimo, da gre za podvojeni paket, ki ga ignoriramo
-  - sprejemnik sporoča koliko prostora ima še v medpomnilniku
+  - sprejemnik sporoča, koliko prostora ima še v medpomnilniku
 - mehanizem vtičnic (*angl.* socket)
   - vtičnica je vmesnik med transportno in aplikacijsko plastjo
   - vključuje naslov vozlišča, vrata in protokol
@@ -112,7 +112,7 @@ Porazdeljeni sistem je tisti, v katerem okvara računalnika, za katerega sploh n
 
     <img src="slike/tcp-odpiranje.png" width="40%" />
 
-  - hitrejši kot je odzivni čas (bližje kot so vozlišča), prej bo povezava vzpostavljena in se bo začel prenos podatkov
+  - krajši kot je odzivni čas (bližje kot so vozlišča), prej bo povezava vzpostavljena in se bo začel prenos podatkov
 
 - povezava vzpostavljena
   - nadzor pretoka
