@@ -39,7 +39,7 @@
   - predavanja:
     [sinhronizacija: pogojne spremenljivke](predavanja/08-sinhronizacija-3/sinhronizacija-3.md),
     [varna sočasnost](predavanja/09-varna-socasnost/varna-socasnost.md)
-  - vaje:
+  - vaje: [metode in vmesniki](vaje/04-metode-vmesniki/Metode-vmesniki.md)
 
 <!-- ### Sistemi s porazdeljenim pomnilnikom
 
