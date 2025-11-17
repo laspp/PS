@@ -41,9 +41,9 @@
     [varna sočasnost](predavanja/09-varna-socasnost/varna-socasnost.md)
   - vaje: [metode in vmesniki](vaje/04-metode-vmesniki/Metode-vmesniki.md)
 
-<!-- ### Sistemi s porazdeljenim pomnilnikom
+ ### Sistemi s porazdeljenim pomnilnikom
 
 - Teden 07:
   - predavanja: posredovanje sporočil:
-    [osnove](predavanja/10-posredovanje-sporocil-1/posredovanje-sporocil-1.md)
--->
+    [osnove](predavanja/10-posredovanje-sporocil-1/posredovanje-sporocil-1.md),
+    [programski vmesniki](predavanja/11-posredovanje-sporocil-2/posredovanje-sporocil-2.md)

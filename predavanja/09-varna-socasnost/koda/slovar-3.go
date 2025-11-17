@@ -14,7 +14,6 @@ var wg sync.WaitGroup
 
 func writeToMap(id int, steps int, dict *sync.Map) {
 	defer wg.Done()
-	dict.Store(id, 0)
 	for i := 0; i < steps; i++ {
 		(*dict).Store(id, i)
 	}
@@ -52,7 +51,7 @@ func main() {
 
 	fmt.Print("dict: map[")
 	dict.Range(
-		func(k, v interface{}) bool {
+		func(k, v any) bool {
 			fmt.Print(k, ":", v, " ")
 			return true
 		})
