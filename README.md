@@ -47,3 +47,4 @@
   - predavanja: posredovanje sporočil:
     [osnove](predavanja/10-posredovanje-sporocil-1/posredovanje-sporocil-1.md),
     [programski vmesniki](predavanja/11-posredovanje-sporocil-2/posredovanje-sporocil-2.md)
+  - vaje: [proizvajalci-porabniki](vaje/05-proizvajalci-porabniki/Proizvajalci-porabniki.md)
