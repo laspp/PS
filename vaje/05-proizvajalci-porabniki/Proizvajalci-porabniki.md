@@ -1,8 +1,8 @@
 # Proizvajalci-porabniki
 
 V porazdeljenih sistemih se pogosto pojavlja vzorec proizvajalec-porabnik, kjer sodelujeta dva tipa procesov:
-    - proizvajalci, ki generirajo zahteve, dogodke ali podatke;
-    - porabniki, ki te zahteve, dogodke ali podatke obdelujejo.
+- proizvajalci, ki generirajo zahteve, dogodke ali podatke;
+- porabniki, ki te zahteve, dogodke ali podatke obdelujejo.
 
 Ključno je, da komunikacija poteka preko skupnega medpomnilnika.
 Ta pristop omogoča usklajevanja hitrosti med proizvajalci in porabniki: proizvajalec lahko dela hitreje ali počasneje kot porabnik, medpomnilnik pa služi kot vmesni prostor, ki zagotavlja, da podatki ne izginejo.
@@ -72,3 +72,4 @@ V programu omogočite varno zaustavitev spletne trgovine. Ob pritisku na **tipko
 Pri posodabljanju spremenljivk `promet` in `stNarocil` s ključavnicami poskrbite, da ne pride do hkratnega spreminjanja vrednosti iz strani več gorutin. Prav tako poskrbite, da se izpisi različnih naročil med sabo ne premešajo.
 
 **Rok za oddajo: 25. 11. 2025**
+
