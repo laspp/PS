@@ -1,0 +1,18 @@
+(?<host>\S*) (?<clock>{.*})\n(?<event>.*)
+
+Client {"Client":1}
+Initialization Complete
+Client {"Client":2}
+INFO Sending Message
+Client {"Client":3, "Server":4}
+INFO Received Message from server
+Client {"Client":4, "Server":4}
+INFO Client finished
+Server {"Server":1}
+Initialization Complete
+Server {"Client":2, "Server":2}
+INFO Received Message from client
+Server {"Client":2, "Server":3}
+INFO Server preparing reply
+Server {"Client":2, "Server":4}
+INFO Sending Message
