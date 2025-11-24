@@ -34,9 +34,9 @@
     - dvakrat na leto (30.6. in 31.12. ob 23:59:59) mu lahko odvzamejo sekundo (takojšen premik na 00:00:00) ali dodajo sekundo (premik na 23:59:60 in potem na 00:00:00)
     - prestopna sekunda [*angl.* leap second](https://en.wikipedia.org/wiki/Leap_second)
     - dan je lahko dolg 86.399, 86.400 ali 86.401 sekund
-    - težave v programski opremi (hrošč v jedru Linux je pripeljal do živega objema, zaustavljen letalski promet v Londonu 30.6.2012)
+    - težave v programski opremi (hrošč v jedru Linux je pripeljal do živega objema, zaustavljen letalski promet v Londonu 30. 6. 2012)
     - danes programska oprema prestopno sekundo uvaja postopno, čez daljše časovno obdobje
-    - čas na operacijskem sistemu Linux se meri v sekundah od 1.1.1970 00:00:00, čas na operacijskih sistemih Windows pa od 1.1.1601 00:00:00 UTC; noben čas ne upošteva prestopnih sekund
+    - čas na operacijskem sistemu Linux se meri v sekundah od 1. 1. 1970 00:00:00, čas na operacijskih sistemih Windows pa od 1. 1. 1601 00:00:00 UTC; noben čas ne upošteva prestopnih sekund
     - pri uporabi časovnih žigov v porazdeljenih sistemih so prestopne sekunde pomembne
 
 - protokol NTP za periodično sinhronizacijo ure
@@ -111,8 +111,9 @@
 - pri zaporednih procesih se vedno ena operacija izvede pred drugo, imamo vzročno povezava prej-potem (*angl.* happened-before)
 - dogodek $X$ se je zgodil pred dogodkom $Y$, če velja
   - $X$ in $Y$ tečeta na istem procesu in se je $X$ zgodil pred $Y$
-  - dogodek $X$ je pošiljanje sporočila, dogodek $Y$ pa sprejemanje istega sporočila
-  - obstaja dogodek $Z$, za katerega velja, da se je dogodek $X$ zgodil pred dogodkom $Z$ in dogodek $Z$ pred dogodkom $Y$
+  - dogodek $X$ je trenutek odpošiljanja sporočila, dogodek $Y$ pa trenutek sprejema istega sporočila
+  - obstaja dogodek $Z$ (samo pošiljanje), za katerega velja, da se je dogodek $X$ zgodil pred dogodkom $Z$ in dogodek $Z$ pred dogodkom $Y$
+  - primer: po zajtrku pošljemo elektronsko pošto prijatelju, prijatelj jo prebere pred kosilom; zajtrkovali smo preden je prijatelj kosil
 - potrebujemo algoritem, ki bo vzročno povezavo prej-potem zagotavljal v porazdeljenih sistemih
 - logične ure merijo čas v dogodkih
   - ob dogodku algoritem določi logični časovni žig
@@ -121,7 +122,6 @@
 ### Lamportova ura [UDS:8.2]
 
 - ideja:
-  - po zajtrku pošljemo elektronsko pošto prijatelju, prijatelj jo prebere pred kosilom; zajtrkovali smo preden je prijatelj kosil
   - pošiljanje sporočila je sinhronizacijska točka
   - dogodki pred sinhronizacijsko točko so se morali zgoditi pred dogodki za sinhronizacijsko točko
 - algoritem
@@ -142,8 +142,8 @@
 - dva nepovezana dogodka imata lahko isti logični časovni žig (dogodka $D_{A1}$ in $D_{C1}$)
 - dogodke lahko strogo uredimo, če števcu pripnemo oznako procesa (za dogodka $D_{A1}$ in $D_{C1}$ bi potem imeli števca 1A in 1C)
 - vrstni red še vedno ne odraža vzročne povezave (dogodka $D_{B1}$ in $D_{C1}$)
-- Lamportova ura predpostavlja proces z zaustavitvijo, s shranjevanjem števcev na disk pa enostavno lahko podpremo tudi obnovljivi proces
 - z Lamportovo uro ne moremo določiti vzročne povezanosti vseh dogodkov ali ugotoviti, da sta dogodka sočasna
+<!-- - Lamportova ura predpostavlja proces z zaustavitvijo, s shranjevanjem števcev na disk pa enostavno lahko podpremo tudi obnovljivi proces -->
 
 ### Vektorska ura [UDS:8.3]
 

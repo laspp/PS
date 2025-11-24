@@ -52,5 +52,5 @@
 - Teden 08:
   - predavanja:
     [posredovanje sporočil, programski vmesniki](predavanja/11-posredovanje-sporocil-2/posredovanje-sporocil-2.md#vzorec-rpc),
-    [modeli porazdeljenih sistemov](predavanja/12-modeli-porazdeljenih-sistemov/modeli-porazdeljenih-sistemov.md)
+    [merjenje časa](predavanja/12-merjenje-casa/merjenje-casa.md)
   - vaje:

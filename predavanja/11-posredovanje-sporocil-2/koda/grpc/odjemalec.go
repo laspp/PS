@@ -16,7 +16,7 @@ import (
 func Client(url string) {
 	// vzpostavimo povezavo s strežnikom
 	fmt.Printf("gRPC client connecting to %v\n", url)
-	conn, err := grpc.Dial(url, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.NewClient(url, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		panic(err)
 	}
