@@ -121,6 +121,19 @@ message PostMessageRequest {
   string text = 3;
 }
 
+message DeleteMessageRequest {
+  int64 topic_id = 1;
+  int64 user_id = 2;
+  int64 message_id = 3;
+}
+
+message UpdateMessageRequest {
+  int64 topic_id = 1;
+  int64 user_id = 2;
+  int64 message_id = 3;
+  string text = 4; // new text
+}
+
 message LikeMessageRequest {
   int64 message_id = 1;
   int64 user_id = 2; // user who posted the like
