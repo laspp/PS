@@ -4,6 +4,10 @@
 
 ## Kazalo
 
+### Projektna naloga
+
+[Navodila](projektna-naloga/navodila.md) za izdelavo projektne naloge. Rok za oddajo **12. 1. 2026.**
+
 ### Uvod
 
 - Teden 01:
@@ -53,4 +57,4 @@
   - predavanja:
     [posredovanje sporočil, programski vmesniki](predavanja/11-posredovanje-sporocil-2/posredovanje-sporocil-2.md#vzorec-rpc),
     [merjenje časa](predavanja/12-merjenje-casa/merjenje-casa.md)
-  - vaje:
+  - vaje: [moduli in paketi](vaje/06-moduli-paketi/Moduli-paketi.md)
