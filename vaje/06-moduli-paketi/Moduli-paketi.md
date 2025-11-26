@@ -109,7 +109,7 @@ Googlov strežnik (proxy.golang.org) samodejno indeksira in hrani module Go, ki 
 # Domača naloga 5
 
 Napišite modul v jeziku Go, in ga objavite na enem od javnih repozitorijev.
-Preko spletne [spletne učilnice](https://ucilnica.fri.uni-lj.si/mod/assign/view.php?id=60604) oddajte povezavo do modula.
+Preko spletne [spletne učilnice](https://ucilnica.fri.uni-lj.si/mod/assign/view.php?id=60725) oddajte povezavo do modula.
 
 **Navodila:**
 
@@ -130,4 +130,4 @@ Kodo rešitve 1. domače naloge lahko poljubno reorganizirate. Le funkcionalnost
 
 Zgledujete se lahko po [primeru](https://github.com/davors/weatherstation). Paketu `redovalnica` dodajte ustrezno dokumentacijo. Pri pisanju dokumentacije se poskušajte držati [pravil](https://go.dev/blog/godoc).
 
-**Rok za oddajo: 23. 11. 2025**
+**Rok za oddajo: 2. 12. 2025**
