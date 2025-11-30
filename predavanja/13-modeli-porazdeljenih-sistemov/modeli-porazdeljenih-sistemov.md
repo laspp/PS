@@ -19,7 +19,7 @@
   - asinhroni model predpostavlja, da posredovanje sporočila ali izvajanje procesa traja neomejen čas; algoritmi, zgrajeni na tem modelu, so zelo robustni; mnogih problemov ni mogoče rešiti ob tej predpostavki
   - delno sinhroni model predpostavlja, da se sistem obnaša večino časa obnaša sinhrono; najprimernejši za modeliranje porazdeljenih sistemov
 
-- v nadaljevanju bomo predpostavili da imamo povezave s sprejemljivimi izgubami, obnovljive procese in delno sinhrono obnašanje
+- v nadaljevanju bomo večinoma predpostavili da imamo povezave s sprejemljivimi izgubami, obnovljive procese in delno sinhrono obnašanje
 
 ## Zaznavanje napak [UDS:7, CDS:1.3, CDS:2.4]
 
@@ -51,7 +51,7 @@
   - za procese, ki pogosto komunicirajo, povezavo raje neprestano preverjamo
     - pošiljanje periodičnih zahtev in potrjevanje (*angl.* ping); te pošiljamo tudi potem, ko sprejemnik ni dostopen; na ta način ugotovimo, kdaj je spet na voljo
     - srčni utrip (*angl.* heartbeat) pošilja vsaka stran posebej; ko signala dlje časa ne dobimo, sklepamo, da je povezava padla
-  - idealni detektor napak obstaja za procese z zaustavitvijo in sinhronim obnašanjem
+  - idealni detektor napak obstaja za neobnovljive procese s sinhronim obnašanjem
   - za bizantinske procese z delno sinhronim obnašanjem idealnega detektorja napak ni
 
 ## Problem dveh generalov [CDS:2.1]

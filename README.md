@@ -58,3 +58,9 @@
     [posredovanje sporočil, programski vmesniki](predavanja/11-posredovanje-sporocil-2/posredovanje-sporocil-2.md#vzorec-rpc),
     [merjenje časa](predavanja/12-merjenje-casa/merjenje-casa.md)
   - vaje: [moduli in paketi](vaje/06-moduli-paketi/Moduli-paketi.md)
+
+- Teden 09:
+  - predavanja:
+    [modeli porazdeljenih sistemov](predavanja/13-modeli-porazdeljenih-sistemov/modeli-porazdeljenih-sistemov.md),
+    [replikacija podatkov in verižna replikacija](predavanja/14-replikacija-1/replikacija-1.md)
+  - vaje:
