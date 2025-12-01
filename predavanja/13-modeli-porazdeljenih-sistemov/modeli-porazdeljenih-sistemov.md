@@ -53,7 +53,7 @@
     - srčni utrip (*angl.* heartbeat) pošilja vsaka stran posebej; ko signala dlje časa ne dobimo, sklepamo, da je povezava padla
   - idealni detektor napak obstaja za neobnovljive procese s sinhronim obnašanjem
   - za bizantinske procese z delno sinhronim obnašanjem idealnega detektorja napak ni
-
+<!--
 ## Problem dveh generalov [CDS:2.1]
 
 - generala vodita vsak svojo vojsko, rada bi zavzela mesto
@@ -98,3 +98,4 @@
   - banka mora zaupati spletni trgovini (da ne posluje z ukradenimi karticami)
   - spletna trgovina mora privzeti, da so kupci goljufivi (če jim pošlje izdelke pred plačilom, bodo to lahko izkoristili)
   - na koncu se morajo vsi trije sporazumeti, da uspešno izvedejo naročilo
+-->
