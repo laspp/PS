@@ -87,7 +87,7 @@
     - pri bralni zahtevi bo proces vrnil zapis, če ni označen kot umazan; če je označen kot umazan, bo prosil rep za zadnjo potrjeno verzijo
   - pri pisalnih zahtevah moramo po verigi do repa in nazaj, kar vzame precej časa
   - pisanje lahko pospešimo, če zahteve obdelujemo cevovodno
-    - v tem primeru označevanje zapisov umazan/čist ni dovolj (dve zaporedni sporočili za isti ključ sta označili zapis za umazan, prva potrditev ga bo naredila čistega, kar ni prav, saj sledi še ena sprememba istega ključa)
+    - v tem primeru označevanje zapisov umazan/čist ni dovolj (dve zaporedni sporočili za isti ključ sta označili zapis za ta ključ umazan, vendar ga bo že prva potrditev naredila čistega, kar ni prav - branje iz repa bo lahko vrnilo drugo verzijo, kot branje iz drugih procesov)
     - problem rešimo tako, da bit umazan/čist nadomestimo z uvedbo različic zapisov
 
   <img src="slike/replikacija-verizna-umazan-zapis.png" width="70%" />
