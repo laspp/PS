@@ -52,9 +52,10 @@
   - procesi so nanizani v verigo: prvi proces v verigi je glava, sledijo vmesni procesi, zadnji je rep
   - delovanje
     - odjemalci zahteve za vpis pošiljajo glavi
+    - glava vsak zapis označi z unikatno oznako (zaporedno številko)
     - glava posodobi svoje stanje in posreduje zahtevo naslednjemu procesu v verigi
     - proces posodobi svoje stanje in zahtevo posreduje nasledniku
-    - ko zahteva pride do repa, ta posodobi svoje stanje in predhodniku pošlje potrditev
+    - ko zahteva pride do repa, ta posodobi svoje stanje in predhodniku pošlje potrditev; šele ko je zapis potrjen, je na voljo za bralne dostope
     - vmesni procesi posredujejo potrditve predhodnikom
     - ko potrditev pride do glave, ta obvesti odjemalca o uspešnem vpisu
     - v osnovni različici bralne zahteve obdeluje samo rep
@@ -70,7 +71,8 @@
       - če je prišlo do odpovedi po posodobitvi shrambe in pred pošiljanjem potrditve, so zapisi shranjeni v shrambi, le odjemalec tega ne ve; po preteku časa bo še enkrat poslal zahtevo
     - če odpove vmesni proces, mora nadzorna ravnina povezati njegovega predhodnika in naslednika
       - lahko je proces posodobil svojo lokalno shrambo, ni pa zahteve posredoval nasledniku
-      - naslednik mora zato nadzorni ravnini poslati zaporedno številko zadnje potrjene zahteve, da mu novi predhodnik lahko pošlje manjkajoče vpise
+      - naslednik mora zato nadzorni ravnini poslati zaporedno številko zadnjega sporočila, da mu novi predhodnik lahko pošlje manjkajoče vpise
+      - novi predhodnik mora nadzorni ravnini poslati zaporedno številko zadnje potrditve, da mu naslednik lahko pošlje manjkajoče potrditve
   - dodajanje novih procesov v verigo
     - najenostavneje na rep
     - novi rep je treba najprej uskladiti s starim repom
@@ -78,14 +80,15 @@
     - če nadzorno ravnino sestavlja $C$ procesov, lahko sistem tolerira do $\lfloor C/2\rfloor$ napak
 - verižna replikacija ima malo različnih napak, ki jih dokaj enostavno razrešimo
 - optimizacija
-  - pri pisalnih zahtevah moramo po verigi do repa in nazaj, kar vzame precej časa
-  - zahteve lahko obdelujemo cevovodno
   - rep je usklajen z vsemi procesi, zato na bralno zahtevo lahko odjemalcu nemudoma odgovori
   - bralne zahteve lahko porazdelimo na vse procese
-    - shrambe morajo podpirati več različic zapisov
     - zapis je ob prejetju zahteve za vpis označen kot umazan
     - ko proces od naslednika dobi potrditev, zapis razume kot potrjen in ga označi kot čistega
     - pri bralni zahtevi bo proces vrnil zapis, če ni označen kot umazan; če je označen kot umazan, bo prosil rep za zadnjo potrjeno verzijo
+  - pri pisalnih zahtevah moramo po verigi do repa in nazaj, kar vzame precej časa
+  - pisanje lahko pospešimo, če zahteve obdelujemo cevovodno
+    - v tem primeru označevanje zapisov umazan/čist ni dovolj (dve zaporedni sporočili za isti ključ sta označili zapis za umazan, prva potrditev ga bo naredila čistega, kar ni prav, saj sledi še ena sprememba istega ključa)
+    - problem rešimo tako, da bit umazan/čist nadomestimo z uvedbo različic zapisov
 
   <img src="slike/replikacija-verizna-umazan-zapis.png" width="70%" />
 - vizualizacija verižne replikacije: [https://github.com/NejcDr/Verizna_replikacija](https://github.com/NejcDr/Verizna_replikacija)
