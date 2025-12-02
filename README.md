@@ -63,4 +63,4 @@
   - predavanja:
     [modeli porazdeljenih sistemov](predavanja/13-modeli-porazdeljenih-sistemov/modeli-porazdeljenih-sistemov.md),
     [replikacija podatkov in verižna replikacija](predavanja/14-replikacija-1/replikacija-1.md)
-  - vaje:
+  - vaje: [posredovanje sporočil](vaje/07-posredovanje-sporocil/Posredovanje-sporocil.md)
