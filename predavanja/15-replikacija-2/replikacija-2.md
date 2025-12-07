@@ -15,7 +15,7 @@
     - algoritem ima manj stanj, enostavnejši mehanizmi za obvladovanje sistema
     - veliko večino časa se sistem obnaša predvidljivo, v primeru težav (izpad procesa in podobno) mogoče traja malo dlje, da se znova vzpostavi
 - tipične napake: odpoved procesa, izguba sporočila, zamenjan vrstni red sporočil
-- model popolnoma urejenega razširjanja FIFO
+<!-- model popolnoma urejenega razširjanja FIFO (naslednje predavanje) -->
 - algoritem predpostavlja obnovljive procese, sprejemljive izgube sporočil in delno sinhrono obnašanje
 - potrebujemo voditelja, ki naloge dodeljuje ostalim procesom
 - procesi se morajo uskladiti - morajo soglašati (*angl.* consensus) glede
@@ -33,7 +33,7 @@
 
 - glavni elementi algoritma raft
   - izbiranje voditelja
-    - volitve, izguba voditelja, volitve,
+    - volitve, izguba voditelja, volitve, izguba voditelja, ...
   - replikacija dnevnika
     - problem usklajevanja dnevnikov sledilcev z dnevnikom voditelja
   - zagotavljanje odpornosti
@@ -45,13 +45,13 @@
   - obdobja so oštevilčena, vrednosti monotono naraščajo
   - vsako obdobje se začne z izbiranjem voditelja (volitvami), nato sledi replikacija dnevnika
   - za zmago na volitvah se lahko poteguje več kandidatov
-  - če volitve niso uspešne (noben od kandidatov ne dobi dovolj glasov), se ponovijo
+  - če volitve niso uspešne (noben od kandidatov ne dobi dovolj glasov), jih ponovimo
 
     <img src="slike/raft-obdobja.png" width="75%" />
 
 - voditelj ostaja glavni dokler ne odstopi ali postane nedostopen; takrat ostali procesi, sledilci, izberejo novega
 - algoritem mora zagotavljati, da je v sistemu na enkrat največ en voditelj, ki lahko dopolnjuje dnevnik
-- dokler v sistemu ni voditelja, je sistem nedostopen; lahko si zapomni zahteve ki so prišle od odjemalcev, ali pa jih zavrne
+- dokler v sistemu ni voditelja, je sistem nedostopen; lahko si zapomni zahteve odjemalcev, ali pa jih zavrne
 
 #### Proces kot končni avtomat
 
@@ -131,6 +131,18 @@
       - volitve za kandidata trajajo predolgo
       - sledilec predolgo ne dobi sporočila od voditelja
     - začne novo obdobje
+- primer 4: potem, ko imamo voditelja, enemu od sledilcev poteče časovnik
+  - ustavimo simulacijo (tipka .)
+  - na enem od sledilcev se izteče časovnik (desni klik nanj in timeout)
+  - nadaljujemo simulacijo (tipka .)
+  - sledilce postane kandidat z višjo oznako volilnega obdobja, zmaga volitve
+- primer 5: imamo voditelja, sporočila ne pridejo do sledilca, sledilec sproži nove volitve
+  - počakamo, da sporočila letijo proti sledilcem
+  - ustavimo simulacijo (tipka .)
+  - sporočilo, ki gre proti izbranemu sledilcu, uničimo (desni klik na sporočilo in drop)
+  - nadaljujemo simulacijo (tipka .)
+  - postopek ponavljamo, dokler izbranemu sledilcu ne poteče časovnik
+  - sledilec sproži nove volitve
 
 ### Replikacija dnevnika
 
@@ -142,8 +154,9 @@
     - deterministično operacijo nad shrambo (za replikacijo shrambe)
     - oznako voditelja (da sledilci lahko usmerjajo odjemalce)
     - številko trenutnega obdobja (za nadzor nad gradnjo dnevnika)
-    - številko zapisa v dnevniku (za nadzor nad gradnjo dnevnika)
+    - številko trenutnega zapisa v dnevniku (za nadzor nad gradnjo dnevnika)
     - številko predhodnega obdobja in zapisa (za nadzor nad gradnjo dnevnika)
+    - številko predhodnega zapisa (za nadzor nad gradnjo dnevnika)
 - lokalni dnevnik razširja na sledilce
 - vsak sledilec gradi svoj dnevnik iz prejetih sporočil
 - proces lahko zapise, ki so soglasno usklajeni med vsemi procesi, uporabi za posodobitev shrambe
@@ -162,7 +175,7 @@
 - sledilec zapis doda v svoj dnevnik in voditelju potrdi sprejem
 - ko voditelj prejme dovolj potrditev (večina), privzame, da je zapis potrjen in operacijo iz zapisa izvede na svoji shrambi
 - voditelj pošlje potrditev odjemalcem
-- voditelj potrditev zapisa sporoči sledilcem ob razširjanju naslednjega zapisa ali srčnega utripa tako, s tem, ko poveča številko zapisa
+- voditelj potrditev zapisa sporoči sledilcem ob razširjanju naslednjega zapisa ali srčnega utripa s tem, ko poveča številko zapisa
 - sledilec ob prejemu sporočila potrdi svoj zapis in izvede operacijo na svoji shrambi
 - nov voditelj začne razširjati zapise šele potem, ko ima vse svoje zapise potrjene
   - ob zmagi na volitvah v dnevnik doda zapis z operacijo nop (*angl.* no operation)
