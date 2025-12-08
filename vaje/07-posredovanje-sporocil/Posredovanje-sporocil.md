@@ -117,7 +117,7 @@ func main() {
 
 ### Komunikacija preko protokola UDP
 
-Za razliko od komunikacije preko TCP, tukaj posamezni proces ne more vedeti, kdaj je naslednji proces v vrsti začel poslušati na vratih. V kolikor je sporočilo poslano preden je prejemnik pripravljen, se bo sporočilo izgubilo. Da zagotovimo pripravljenost vseh procesov uvedemo gorutino `heartBeat`, ki poskrbi, da glavni proces `id==0` počaka na prejem obvestil od vseh ostalih procesov, da so pripravljeni, preden pošlje sporočilo prvemu. 
+Za razliko od komunikacije preko TCP, tukaj posamezni proces ne more vedeti, kdaj je naslednji proces v vrsti začel poslušati na vratih. Če je sporočilo poslano, preden je prejemnik pripravljen, se bo izgubilo. Da zagotovimo pripravljenost vseh procesov, uvedemo gorutino `heartBeat`, ki poskrbi, da glavni proces `id==0` počaka na prejem obvestil od vseh ostalih procesov, da so pripravljeni, preden pošlje sporočilo prvemu. 
 
 ```Go
 package main
@@ -262,5 +262,6 @@ Vaša naloga je napisati program v Go za razširjanje sporočil med procesi. Re�
 Procesi naj za komunikacijo uporabljajo protokol **UDP**. Vsak proces naj ob **prvem** prejemu sporočila to izpiše na zaslon in procesu, ki je sporočilo poslal vrne potrditev. Razširjajoči proces naj sporočilo poskuša poslati večkrat (največ 5x), dokler ne dobi potrditve. Med posamezna pošiljanja dodajte kratko pavzo (500 ms). 
 
 Pri poslušanju za sporočila je priporočeno, da nastavite rok trajanja povezave s pomočjo metode [SetDeadline](https://pkg.go.dev/net#IPConn.SetDeadline) ali pa kako drugače poskrbite, da se proces zaključi in sprosti vrata, če po nekem času ne dobi sporočila. S tem se boste izognili težavam z zasedenostjo vrat v primeru, da pride do smrtnega objema, ko nek proces čaka na sporočilo, ki nikoli ne pride. V procesih ni potrebno uporabiti principa preverjanja utripa za ugototavljanje, če so procesi prejemniki pripravljeni oziroma živi. Glavni proces naj kar takoj začne pošiljati sporočila. 
+
 
 **Rok za oddajo: 9. 12. 2025**
