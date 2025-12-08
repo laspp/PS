@@ -153,10 +153,8 @@
   - vsak zapis vključuje
     - deterministično operacijo nad shrambo (za replikacijo shrambe)
     - oznako voditelja (da sledilci lahko usmerjajo odjemalce)
-    - številko trenutnega obdobja (za nadzor nad gradnjo dnevnika)
-    - številko trenutnega zapisa v dnevniku (za nadzor nad gradnjo dnevnika)
-    - številko predhodnega obdobja in zapisa (za nadzor nad gradnjo dnevnika)
-    - številko predhodnega zapisa (za nadzor nad gradnjo dnevnika)
+    - podatke o prejšnjem zapisu (številka obdobja in številka zapisa) za nadzor nad gradnjo dnevnika
+    - podatke o novem zapisu (številka obdobja in številka zapisa) za nadzor nad gradnjo dnevnika
 - lokalni dnevnik razširja na sledilce
 - vsak sledilec gradi svoj dnevnik iz prejetih sporočil
 - proces lahko zapise, ki so soglasno usklajeni med vsemi procesi, uporabi za posodobitev shrambe
