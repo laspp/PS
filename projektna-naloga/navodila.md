@@ -92,7 +92,7 @@ service  MessageBoard{
   rpc LikeMessage(LikeMessageRequest) returns (Message);
 
   // Request a node to which a subscription can be opened.
-  rpc GetSubcscriptionNode(SubscriptionNodeRequest) returns (SubscriptionNodeResponse);
+  rpc GetSubscriptionNode(SubscriptionNodeRequest) returns (SubscriptionNodeResponse);
 
   // Reads go to the tail node
 
@@ -208,3 +208,4 @@ Primarna naloga je, da implementirate zgornji programski vmesnik strežnika in p
     - Go ima vgrajeno [podporo](https://go.dev/doc/tutorial/fuzz) za pisanje testov. Pripravite nabor testov, ki validirajo delovanje vaše Razpravljalnice.
 
     - Predvidite, da lahko pride do odpovedi nadzorne ravnine. Uvedite več vozlišč v nadzorno ravnino in uporabite protokol [raft](https://repozitorij.uni-lj.si/Dokument.php?id=215152&lang=slv), da poskrbite za primere odpovedi. Poslužite se lahko katere izmed obstoječih, na primer [HashiCorp](https://github.com/hashicorp/raft) ali [diploma FRI](https://github.com/Timcek/raft) protokola raft v Go.
+
