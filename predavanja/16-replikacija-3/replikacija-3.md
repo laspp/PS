@@ -65,7 +65,7 @@
 - to lahko dosežemo, če odjemalci vedno komunicirajo z istim procesom (voditeljem ali sledilcem)
 - če dva odjemalca pri branju komunicirata vsak s svojim procesom, bosta brala enake vrednosti, vendar bosta isto spremembo najverjetneje opazila ob drugem času
 
-  <img src="slike/skladnost-zaporedna.png" width="45%" />
+  <img src="slike/skladnost-zaporedna.png" width="60%" />
 
 - primer: proizvajalec in porabnik: porabnik pobira izdelke iz police v enakem vrstnem redu, kot jih nanjo odlaga proizvajalec; porabnik ves čas zaostaja za proizvajalcem
 
