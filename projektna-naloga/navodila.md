@@ -28,7 +28,6 @@ import "google/protobuf/timestamp.proto";
 ////////////////////////////////////////////////////////////////////////////////
 // Basic data types
 ////////////////////////////////////////////////////////////////////////////////
-
 message User {
   int64 id = 1;
   string name = 2;
@@ -79,7 +78,7 @@ service  MessageBoard{
   // Creates a new topic to which users can post messages
   rpc CreateTopic(CreateTopicRequest) returns (Topic);
 
-  // Post a message to a topic; Succed only if the User and the Topic exist in the data base.
+  // Post a message to a topic; Succeed only if the User and the Topic exist in the database.
   rpc PostMessage(PostMessageRequest) returns (Message);
 
   // Update an existing message. Allowed only for the user who posted the message.
@@ -99,12 +98,15 @@ service  MessageBoard{
   // Returns all the topics
   rpc ListTopics(google.protobuf.Empty) returns (ListTopicsResponse);
 
+  // NOTE: Add method GetUsers or attach name to message in order to obtain user names.
+  // Currently, there is no way for the client to display user names, only user IDs
+
   // Returns messages in a topic
   rpc GetMessages(GetMessagesRequest) returns (GetMessagesResponse);
 
   // Subscribe to topics; goes to the node returned by head
   rpc SubscribeTopic(SubscribeTopicRequest) returns (stream MessageEvent);
-
+  
 }
 
 message CreateUserRequest {
@@ -208,4 +210,5 @@ Primarna naloga je, da implementirate zgornji programski vmesnik strežnika in p
     - Go ima vgrajeno [podporo](https://go.dev/doc/tutorial/fuzz) za pisanje testov. Pripravite nabor testov, ki validirajo delovanje vaše Razpravljalnice.
 
     - Predvidite, da lahko pride do odpovedi nadzorne ravnine. Uvedite več vozlišč v nadzorno ravnino in uporabite protokol [raft](https://repozitorij.uni-lj.si/Dokument.php?id=215152&lang=slv), da poskrbite za primere odpovedi. Poslužite se lahko katere izmed obstoječih, na primer [HashiCorp](https://github.com/hashicorp/raft) ali [diploma FRI](https://github.com/Timcek/raft) protokola raft v Go.
+
 
