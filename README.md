@@ -75,6 +75,19 @@
     [soglasje, skladnost in replikacija brez sporov](predavanja/16-replikacija-3/replikacija-3.md),
     [razširjanje sporočil](predavanja/17-razsirjanje-sporocil/razsirjanje-sporocil.md)
   - vaje: [testiranje programske kode](vaje/09-testiranje-programske-kode/Testiranje.md)
+
 - Teden 12:
   - predavanja: obisk gruče Arnes
   - vaje: konzultacije
+
+
+- Teden 12:
+  - predavanja:
+    obisk računskega centra Arnes in IJS
+
+- Teden 13:
+  - predavanja:
+    [grafične procesne enote](predavanja/19-gpe/gpe.md),
+    [programski vmesnik CUDA](predavanja/20-cuda/cuda.md),
+    [računanje razlike vektorjev](predavanja/21-cuda-primeri/cuda-primeri.md#primer-računanje-razlike-vektorjev)
+  - vaje:
