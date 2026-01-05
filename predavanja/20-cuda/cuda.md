@@ -7,13 +7,13 @@
 
 ## Hierarhična organizacija niti
 
-- mreža niti (*angl.* grid)
+- mreža niti
   - vse niti v mreži izvajajo isti ščepec
   - niti v mreži si delijo globalni pomnilnik na GPE
   - mreža je sestavljena iz blokov niti
 - blok niti
   - vse niti v bloku se izvajajo na isti računski enoti
-  - preko skupnega pomnilnika lahko izmenjujejo in se sinhronizirajo
+  - preko skupnega pomnilnika lahko izmenjujejo podatke in se sinhronizirajo
 - nit
   - zaporedno izvaja ščepec na svojih podatkih
   - uporablja zasebni pomnilnik

@@ -67,7 +67,7 @@
   - *angl.* processing elements - PE, streaming processor - SP, core, ALE
   - podobna vloga kot ALE na CPE
   - koncept SIMD (*angl.* single instruction multiple data)
-  - v novejših arhitekturah specializirane enote za celoštevilčno računanje, računanje v enojni in dvojni natančnosti
+  - v novejših arhitekturah specializirane enote za celoštevilčno računanje, računanje v enojni in dvojni natančnosti, računanje v polovični in nižjih natančnostih
 
 - druge računske enote
   - posebne funkcije (*angl.* special function units)
@@ -75,10 +75,10 @@
 
 - kontrolna enota nadzira več procesnih elementov
   - prevzem in dekodiranje ukazov
-    - nima naprednih funkcij analize ukaznega toka
-    - zakrivanje latence dostopa do pomnilnika z dobrim razvrščanjem ogromne množice niti
-    - razvrščanje niti na procesne elemente (*angl.* warp scheduler)
-    - prevzem in shranjevanje operandov (*angl.* load/store units)
+  - nima naprednih funkcij analize ukaznega toka
+  - zakrivanje latence dostopa do pomnilnika z dobrim razvrščanjem ogromne množice niti
+  - razvrščanje niti na procesne elemente (*angl.* warp scheduler)
+  - prevzem in shranjevanje operandov (*angl.* load/store units)
 
 <img src="slike/racunske-enote.png" width="100%" />
 
@@ -91,7 +91,7 @@
     - 32-bitni registri
     - razdeljen med procesne elemente
     - vsaka nit dobi svoj delež
-    - prevajalnik za lokalne spremenljivke v jedru uporabi registre
+    - prevajalnik za lokalne spremenljivke uporabi registre
     - če registrov zmanjka, uporabi del globalnega pomnilnika!
     - dostopni čas: 1 cikel
   - L1 predpomnilnik in skupni pomnilnik (*angl.* shared memory)
@@ -141,17 +141,18 @@
 - poudarek na podatkovnem paralelizmu
 - izvajati želimo ogromno število niti, tako bodo vedno na voljo niti, ki so pripravljene na izvajanje - zakrivanje latence dostopa do glavnega pomnilnika
 - hierarhična organizacija niti
-  - sledi hierarhični arhitekturi procesorjev in pomnilnikov: blok niti in snop niti
-  - blok niti
+  - sledi hierarhični arhitekturi procesorjev in pomnilnikov: mreža niti, blok niti in snop niti
+  - mreža niti (*angl.* grid) je sestavljena iz blokov niti
+  - blok niti (*angl.* block)
     - bloke niti na računske enote enakomerno razvršča glavni razvrščevalnik na napravi
     - vse niti v bloku se izvajajo na isti računski enoti
     - na isti računski enoti se hkrati lahko izvaja več različnih blokov niti, število je omejeno z arhitekturo GPE
     - blok niti se na računski enoti izvaja neodvisno od ostalih blokov
-    - vrstni red izvajanja blokov ni podan: predvideti moramo, da se bloki lahko izvajajo celo zaporedno
+    - vrstni red izvajanja blokov ni podan: predvideti moramo, da se bloki lahko izvajajo zaporedno
     - blok niti se na računski enoti izvaja dokler z izvajanjem ne zaključijo vse niti v bloku
     - niti v bloku si lahko izmenjujejo podatke preko skupnega pomnilnika
     - niti v bloku lahko preko skupnega pomnilnika sinhroniziramo
-  - snop niti
+  - snop niti (*angl.* warp)
     - predstavlja manjšo skupino niti v bloku z zaporednimi indeksi (32 pri Nvidia GPE)
     - snop je osnovna enota, s katero upravlja računska enota
     - niti v snopu izvajajo isti ukaz
