@@ -69,7 +69,7 @@
   - koncept SIMD (*angl.* single instruction multiple data)
   - v novejših arhitekturah specializirane enote za celoštevilčno računanje, računanje v enojni in dvojni natančnosti, računanje v polovični in nižjih natančnostih
 
-- druge računske enote
+- izvajalne enote
   - posebne funkcije (*angl.* special function units)
   - tenzorska jedra
 
