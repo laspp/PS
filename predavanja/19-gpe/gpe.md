@@ -61,7 +61,7 @@
   - *angl.*  compute unit, multiprocessor - MP, SIMD engine
   - podobno kot jedro na CPE
   - svoj nabor ukazov
-  - zgrajena je iz množice procesnih elementov in drugih računskih enot ter kontrolnih enot
+  - zgrajena je iz množice procesnih elementov in drugih izvajalnih enot ter kontrolnih enot
 
 - procesni element
   - *angl.* processing elements - PE, streaming processor - SP, core, ALE
