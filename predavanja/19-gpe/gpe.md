@@ -142,7 +142,9 @@
 - izvajati želimo ogromno število niti, tako bodo vedno na voljo niti, ki so pripravljene na izvajanje - zakrivanje latence dostopa do glavnega pomnilnika
 - hierarhična organizacija niti
   - sledi hierarhični arhitekturi procesorjev in pomnilnikov: mreža niti, blok niti in snop niti
-  - mreža niti (*angl.* grid) je sestavljena iz blokov niti
+  - mreža niti (*angl.* grid)
+    - sestavljena je iz blokov niti
+    - vse niti izvajajo isto programsko kodo
   - blok niti (*angl.* block)
     - bloke niti na računske enote enakomerno razvršča glavni razvrščevalnik na napravi
     - vse niti v bloku se izvajajo na isti računski enoti
