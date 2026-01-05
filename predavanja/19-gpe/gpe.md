@@ -61,16 +61,16 @@
   - *angl.*  compute unit, multiprocessor - MP, SIMD engine
   - podobno kot jedro na CPE
   - svoj nabor ukazov
-  - zgrajena je iz množice procesnih elementov in drugih izvajalnih enot ter kontrolnih enot
+  - zgrajena je iz množice procesnih elementov in specializiranih izvajalnih enot ter kontrolnih enot
 
 - procesni element
   - *angl.* processing elements - PE, streaming processor - SP, core, ALE
   - podobna vloga kot ALE na CPE
   - koncept SIMD (*angl.* single instruction multiple data)
-  - v novejših arhitekturah specializirane enote za celoštevilčno računanje, računanje v enojni in dvojni natančnosti, računanje v polovični in nižjih natančnostih
-
-- izvajalne enote
+  
+- specializirane izvajalne enote
   - posebne funkcije (*angl.* special function units)
+  - enote za celoštevilčno računanje, računanje v enojni in dvojni natančnosti, računanje v polovični in nižjih natančnostih
   - tenzorska jedra
 
 - kontrolna enota nadzira več procesnih elementov
