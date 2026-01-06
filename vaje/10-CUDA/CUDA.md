@@ -69,7 +69,7 @@ $ srun --partition=gpu --gpus=1 go run .
 
 ## Domača naloga 8
 
-Vaša naloga je napisati program v Go, ki bo s pomočjo filtriranja z mediano odstranil šum iz slike. Rešitev (modul) v obliki datoteke zip oddajte preko [spletne učilnice]().
+Vaša naloga je napisati program v Go, ki bo s pomočjo filtriranja z mediano odstranil šum iz slike. Rešitev (modul) v obliki datoteke zip oddajte preko [spletne učilnice](https://ucilnica.fri.uni-lj.si/mod/assign/view.php?id=61226).
 
 [Filitriranje z mediano](https://en.wikipedia.org/wiki/Median_filter) je postopek za odstranjevanje šuma v signalih. Pogosto se uporablja za predprocesiranje slik za pripravo za nadaljnje analize ali za izboljšanje vizualne kakovosti. Njegova prednost je, da ohranja robove in podrobnosti v slikah. Osnovna ideja je zamenjati vrednosti posamezne slikovne točke z mediano vrednosti točk v njeni okolici. Tipično se uporablja okno velikosti 3x3 ali 5x5 slikovnih točk.
 
