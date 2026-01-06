@@ -18,7 +18,7 @@
   - zaporedno izvaja ščepec na svojih podatkih
   - uporablja zasebni pomnilnik
   - z nitmi v bloku si deli skupni pomnilnik
-  - lahko dostopa do globalne pomnilnika in pomnilnika konstant
+  - lahko dostopa do globalnega pomnilnika in pomnilnika konstant
 
 ## Označevanje niti
 
