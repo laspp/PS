@@ -33,8 +33,6 @@
 - koda go: [razlika-e.go](koda/go/razlika/enotni-pomnilnik/razlika-e.go)/[razlika-4.cu](koda/go/razlika/enotni-pomnilnik/razlika-4.cu) in koda C: [razlikaC-e4.cu](koda/C/razlika/razlikaC-e4.cu)
   - rešitev z enotnim pomnilnikom
 
-<!--
-
 ## Primer: razdalja med vektorjema
 
 - imamo vektorja $\mathbf{a}=(a_0, \ldots, a_{N-1})$ in $\mathbf{b}=(a_0, \ldots, a_{N-1})$
@@ -161,5 +159,3 @@
 - koda go: [urejanje-nl.go](koda/go/urejanje/napredno-lok/urejanje-nl.go)/[urejanje-nl.cu](koda/go/urejanje/napredno-lok/urejanje-nl.cu) in koda C: [urejanjeC-nl.cu](koda/C/urejanje/urejanjeC-nl.cu)
   - ščepca `bitonicSortStart` in `bitonicSortFinish` podatke najprej skopirata iz glavnega v skupni pomnilnik, jih uredita in po urejanju zapišeta nazaj v glavni pomnilnik
   - podatke v ščepcu `bitonicSortMiddle` preberemo in po potrebi preuredimo samo enkrat, zato bo uporaba skupnega pomnilnika kvečjemu upočasnila izvajanje
-
--->

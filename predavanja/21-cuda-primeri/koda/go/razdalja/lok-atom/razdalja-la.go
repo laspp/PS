@@ -2,7 +2,7 @@
 // 		argumenti: število blokov, število niti, dolžina vektorjev, oznaka ščepca
 // uporabimo lokalni pomnilnik na napravi, ki ga rezerviramo statično
 // delne vsote seštevamo z atomarnim ukazom
-// izboljševanje dve rešitvi: VectorDistanceLA1Ex ... VectorDistanceLA4Ex
+// dve rešitvi: VectorDistanceLA1Ex ... VectorDistanceLA2Ex
 // prevajanje:
 //		source ../../cudago-init.sh
 //		CudaGo -precompile -package cudago *.cu

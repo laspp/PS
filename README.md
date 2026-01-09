@@ -86,3 +86,10 @@
     [programski vmesnik CUDA](predavanja/20-cuda/cuda.md),
     [računanje razlike vektorjev](predavanja/21-cuda-primeri/cuda-primeri.md#primer-računanje-razlike-vektorjev)
   - vaje: [programski vmesnik CUDA](vaje/10-CUDA/CUDA.md)
+
+- Teden 14:
+  - predavanja:
+    [računanje razdalje](predavanja/21-cuda-primeri/cuda-primeri.md#primer-razdalja-med-vektorjema),
+    [urejanje](predavanja/21-cuda-primeri/cuda-primeri.md#primer-bitonično-urejanje)
+  - vaje:
+  
