@@ -1,0 +1,24 @@
+GPE:                Nvidia V100s
+Velikost vektorja:  268435456
+Velikost bloka:     1024
+
+Meritve
+=======
+- 5 meritev, na GPE prvo obravnavamo posebej + povprečje ostalih štirih
+- na GPE so v oklepajih časi izvajanja ščepca
+- vsi rezultati so v milisekundah
+
+                    povprečje meritev
+Gostitelj:          331
+
+                    prva meritev    povprečje ostalih
+GPE globalni:       682   (73,3)    614,0   (4,4)
+GPE lok-stat:       520  (186,1)    343,3   (9,0)
+GPE lok-din 1:      419   (85,0)    343,5   (9,2)
+GPE lok-din 2:      427	  (92,5)    343,4   (9,1)
+GPE lok-din 3:      400	  (65,1)    339,3   (5,2)
+GPE lok-din 4:      491	 (156,8)    339,5   (4,9)
+GPE lok-atom 1:     359	  (25,3)    338,7   (4,9)
+GPE lok-atom 2*:    883	 (548,9)    869,0 (534,8)
+
+    * rezultat je pri tako velikem vektorju napačen
