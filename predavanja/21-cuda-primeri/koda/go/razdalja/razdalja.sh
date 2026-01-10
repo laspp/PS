@@ -3,7 +3,7 @@
 #SBATCH --partition=gpu
 #SBATCH --gpus=1
 #SBATCH --constraint=v100s
-#SBATCH --output=razdalje.out
+#SBATCH --output=razdalja.out
 
 source ../cudago-init.sh
 

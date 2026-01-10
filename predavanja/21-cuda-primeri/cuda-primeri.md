@@ -145,7 +145,7 @@
   - bolj zoprn izračun prvega elementa, ki ga ureja izbrana nit, `i1 = 2*j * (int)(gid/j) + (gid%j);`
 
 - koda go: [urejanje-n.go](koda/go/urejanje/napredno/urejanje-n.go)/[urejanje-n.cu](koda/go/urejanje/napredno/urejanje-n.cu) in koda C: [urejanjeC-n.cu](koda/C/urejanje/urejanjeC-n.cu)
-  - dokler urejamo rezine, ki so manjše ali enake številu niti v bloku, se lahko delamo sinhronizacijo v bloku
+  - dokler urejamo rezine, ki so manjše ali enake številu niti v bloku, lahko delamo sinhronizacijo v bloku
   - ščepec `bitonicSort` spremenimo v funkcijo, ki se izvaja samo na napravi (`__device__`)
   - naredimo tri ščepce, ki kličejo funkcijo `bitonicSort`
     - `bitonicSortStart`

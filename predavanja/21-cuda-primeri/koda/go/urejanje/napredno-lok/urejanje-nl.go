@@ -87,7 +87,7 @@ func main() {
 	cudago.BitonicSortStartEx(gridSize, blockSize, bytesLocalMemory, nil, da.Ptr, int32(*tableSizePtr)) // k = 2 ... 2 * blockSize.x
 	for k := 4 * int32(blockSize.X); k <= int32(*tableSizePtr); k <<= 1 {                               // k = 4 * blockSize ... tableLength
 		for j := k / 2; j >= 2*int32(blockSize.X); j >>= 1 { //   j = k/2 ... 2 * blockSize.x
-			err = cudago.BitonicSortMiddleEx(gridSize, blockSize, bytesLocalMemory, nil, da.Ptr, int32(*tableSizePtr), k, j)
+			err = cudago.BitonicSortMiddle(gridSize, blockSize, da.Ptr, int32(*tableSizePtr), k, j)
 			if err != nil {
 				panic(err)
 			}

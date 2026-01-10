@@ -1,0 +1,18 @@
+GPE:                Nvidia V100s
+Velikost vektorja:  16777216
+Velikost bloka:     256
+
+Meritve
+=======
+- 5 meritev, na GPE prvo obravnavamo posebej + povprečje ostalih štirih
+- na GPE so v oklepajih časi izvajanja ščepca
+- vsi rezultati so v milisekundah
+
+                    povprečje meritev
+Gostitelj:          8934
+
+                    prva meritev    povprečje ostalih
+osnovno             120	(106,6)     53 (40,7)
+osnovno-vse-niti    113  (99,2)     49 (36,7)
+napredno             98	 (85,4)     40 (27,9)
+napredno-lok        146	(132,8)     38 (26,1)
