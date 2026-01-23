@@ -11,6 +11,7 @@
 //		source ../../cudago-init.sh
 // 		srun --partition=gpu --gpus=1 go run razdalja-ld.go
 // 		srun --partition=gpu --gpus=1 go run -gcflags '-N' razdalja-ld.go
+//											 -gcflags '-N': disable go optimizations
 
 package main
 

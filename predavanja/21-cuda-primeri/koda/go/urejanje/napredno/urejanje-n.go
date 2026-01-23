@@ -112,7 +112,7 @@ func main() {
 	// merjenje časa na napravi - konec
 	timeDevice := time.Since(startDevice)
 
-	// bitonično rurejanje na gostitelju
+	// bitonično urejanje na gostitelju
 	startHost := time.Now()
 	for k := 2; k <= *tableSizePtr; k <<= 1 {
 		for j := k / 2; j > 0; j >>= 1 {
