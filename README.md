@@ -93,3 +93,5 @@
     [urejanje](predavanja/21-cuda-primeri/cuda-primeri.md#primer-bitonično-urejanje)
   - vaje:
   
+- Izpiti:
+  - [22. 1. 2026](izpiti/Izpit-20260122-resitve.pdf)
