@@ -95,3 +95,4 @@
   
 - Izpiti:
   - [22. 1. 2026](izpiti/Izpit-20260122-resitve.pdf)
+  - [3. 2. 2026](izpiti/Izpit-20260203-resitve.pdf)
