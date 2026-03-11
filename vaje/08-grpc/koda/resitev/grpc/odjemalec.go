@@ -25,7 +25,7 @@ func Client(url string) {
 	defer conn.Close()
 
 	// vzpostavimo izvajalno okolje
-	contextCRUD, cancel := context.WithTimeout(context.Background(), time.Second)
+	contextCRUD, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	// vzpostavimo vmesnik gRPC
@@ -103,3 +103,4 @@ func Client(url string) {
 	fmt.Println("done")
 
 }
+
