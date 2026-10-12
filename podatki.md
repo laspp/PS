@@ -45,7 +45,7 @@
 
 - Domače naloge
   - v semestru bo 8 kratkih domačih nalog, ki jih morate preko vmesnika spletne učilnice oddati v predpisanih rokih
-  - za pristop k izpitu morate oddati vsaj 6 nalog
+  - pogoj za pristop k izpitu je pozitivno ocenjenih 6 od 8 kratkih domačih nalog
   
 - 50 % iz projektne naloge
 

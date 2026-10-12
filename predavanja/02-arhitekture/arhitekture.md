@@ -76,7 +76,7 @@
 
 ### Arhitektura UMA (SMP)
 
-- *angl.* Unified Memory Architecture
+- *angl.* Uniform Memory Access
 - *angl.* Symmetric Multi-Processor
 
   <img src="slike/UMA.png" alt="arhitektura UMA" width="50%">
@@ -89,7 +89,7 @@
 
 ### Arhitektura NUMA
 
-- *angl.* Non-Unified Memory Architecture
+- *angl.* Non-Uniform Meory Access
 
   <img src="slike/NUMA.png" alt="arhitektura NUMA" width="70%">
 
