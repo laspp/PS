@@ -21,7 +21,7 @@
   - predavanja:
     [programska oprema](predavanja/03-programska-oprema/programska-oprema.md),
     [SLURM](predavanja/04-slurm/slurm.md)
-  - vaje:
+  - vaje: [delo na gruči Arnes](vaje/01-uporaba-gruce/Uporaba_gruce.md)
 
 - Teden 03:
   - predavanja:
