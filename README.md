@@ -15,6 +15,10 @@
       [arhitekture](predavanja/02-arhitekture/arhitekture.md)
   - vaje: jih še ni 
 
+- Teden 02:
+  - predavanja:
+  - vaje: [uporaba gruče Arnes](vaje/01-uporaba-gruce/Uporaba_gruce.md)
+
 <!-->  
 - Izpiti:
 <!--> 
