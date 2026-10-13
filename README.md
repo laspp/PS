@@ -3,9 +3,6 @@
 ## [Osnovni podatki o predmetu](podatki.md)
 
 ## Kazalo
-<!-->
-### Projektna naloga
-<!-->
 
 ### Uvod
 
