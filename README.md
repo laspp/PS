@@ -23,5 +23,5 @@
 - Teden 03:
   - predavanja:
     [jezik go](predavanja/05-go/go.md)  
-  - vaje:
+  - vaje: [jezik go](vaje/02-programski-jezik-go/Uvod_v_go.md) 
 
