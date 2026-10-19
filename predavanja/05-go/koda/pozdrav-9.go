@@ -7,7 +7,6 @@ package main
 import (
 	"fmt"
 	"strconv"
-	"time"
 )
 
 const printouts = 10
@@ -29,8 +28,6 @@ func main() {
 	stringStream = make(chan string)
 
 	go hello("hello-world")
-
-	time.Sleep(100 * time.Millisecond)
 
 	for msg := range stringStream {
 		fmt.Print(msg, " ")

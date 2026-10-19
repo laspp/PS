@@ -14,12 +14,14 @@ import (
 func getLettersFromMessage(message string) <-chan rune {
 
 	defer fmt.Println("getLettersFromMessage: done")
+
 	fmt.Println("getLettersFromMessage: start")
 	letterStream := make(chan rune)
 
 	go func() {
 		defer fmt.Println("anonymous function: done") // prvi napisani defer se izvede zadnji
 		defer close(letterStream)
+		
 		fmt.Println("anonymous function: start") // prvi napisani defer se izvede zadnji
 		for _, letter := range message {
 			letterStream <- letter
@@ -29,7 +31,7 @@ func getLettersFromMessage(message string) <-chan rune {
 	return letterStream
 }
 
-func getUppercaseMessageFromLetters(letterStream <-chan rune) string {
+func getMessageFromLetters(letterStream <-chan rune) string {
 	capsMessage := ""
 	for letter := range letterStream {
 		capsMessage += string(unicode.ToUpper(letter))
@@ -42,6 +44,6 @@ func main() {
 
 	letterStream := getLettersFromMessage(message)
 
-	capsMessage := getUppercaseMessageFromLetters(letterStream)
+	capsMessage := getMessageFromLetters(letterStream)
 	fmt.Println(message, " --> ", capsMessage)
 }

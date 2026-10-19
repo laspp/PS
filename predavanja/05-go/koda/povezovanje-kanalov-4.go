@@ -41,7 +41,6 @@ func reader(stream1 <-chan string, stream2 <-chan string, streamDone <-chan stru
 			return
 		case <-time.After(1 * time.Second):
 			fmt.Println("timeout")
-		default:
 		}
 	}
 }

@@ -3,23 +3,23 @@
 ## Zgodovinski pogled
 
 - najprej jezik C, s katerim so lahko dobro izkoristili malo virov, ki so bili na voljo; čista sintaksa, enostavnost programiranja nista prioriteti
-- kasneje C++, C#, java podpirajo večnitno programiranje, čiščenje pomnilnika, z novimi in novimi funkcionalnosti vedno bolj zmogljivi
+- kasneje C++, C#, java podpirajo večnitno programiranje, čiščenje pomnilnika, z novimi in novimi funkcionalnostmi vedno bolj zmogljivi
 - jezika python/javascript: ogromna skupnost, veliko paketov, nista prevajana, fokus ni na zmogljivosti
 - niša: zmogljiv, prevajan, večplatformni jezik z vgrajeno podporo za vzporedenje (sistemsko programiranje)
 - statično tipiziran jezik, ni objekten, podpora za pisanje vmesnikov
 
-## Glavne lastnosti [OPG:1-9]
+## Glavne lastnosti [IPG:1-9]
 
 - ima zelo čisto in enostavno sintakso, malo ključnih besed in vrst ločil
 - strikten pri pisanju kode, večja berljivost
 - razvit v mislih na večjedrne procesorje, ima vgrajeno podporo za vzporedenje (naloge/gorutine in kanali)
 - je prevajani jezik, prevajalnik je izjemno hiter, na voljo za najrazličnejše platforme
-- delo s pomnilnikom (kazalci, dostop, mehanizem za čiščenje pomnilnika se izvaja vzporedno, ne ustavlja izvajanja programa) 
+- delo s pomnilnikom (kazalci, dostop, mehanizem za čiščenje pomnilnika se izvaja vzporedno in za kratke intervale ustavlja izvajanja programa) 
 - vgrajen izviren sistem za preverjanje napak
 - je statično tipizirani programski jezik, na podatkovni tip lahko sklepa iz kode
 - pozna tipe in metode, ne pa dedovanja, ima podporo za vmesnike
 - vgrajeno upravljanje paketov
-- zasnovan za sistemsko programiranje, mrežne vmesnike in razvoj spletnih aplikacij, že zdavnaj je prešel te okvire
+- zasnovan za sistemsko programiranje, omrežne storitve in razvoj spletnih aplikacij, že zdavnaj je prešel te okvire
 - primeren je za pisanje visokozmogljivih programov (hitro izvajanje, nizke latence)
 - pri razvoju so imeli v mislih dobre inženirske prakse (testiranje enot)
 - vedno večja skupnost razvijalcev in uporabnikov
@@ -28,9 +28,9 @@
 
 ## Podpora za sočasnost [CG:2]
 
-- model opravilo kanal (Foster, 1995), model CSP, *angl.* Communicating Sequential Processes (Hoare, 1978)
+- model opravilo-kanal (Foster, 1995), model CSP, *angl.* Communicating Sequential Processes (Hoare, 1978)
 
-  - leto 1978: ali uporabljati stavek goto, osnutki objektnega programiranja, nihče ne razmišlja o sočasnosti
+  - leto 1978: ali uporabljati stavek goto, osnutki objektnega programiranja, malo aktivnosti na sočasnosti
   - CSP predstavljen kot programski jezik
   - model
     - sestavni deli: vhod, izhod, sekvenčna funkcija (proces, naloga)
@@ -38,8 +38,8 @@
     - programski jezik zagotavlja pravilno komunikacijo med nalogami
   - Hoare pokaže, da je mnogo problemov zelo enostavno reševati na ta način
   - z leti se je pokazalo, da je ta model zelo blizu našemu načinu razmišljanja
-- logiko modela opravilo kanal privzame jezik go
-  - naloge poimenuje sorutine / gorutine
+- logiko modela opravilo-kanal privzame jezik go
+  - naloge poimenuje gorutine
   - gorutine si podatke izmenjujejo preko kanalov
   - hitro preklapljanje med gorutinami nam omogoči, da
     - delamo sočasno z veliko množico gorutin
@@ -53,12 +53,12 @@
 
 ## Gorutine [OPG:10.1]
 
-- sinonimi: naloga, sorutina in gorutina
+- sinonimi: naloga in gorutina
 - osnovna enota programa v jeziku go
 - program v jeziku go ima vedno vsaj glavno gorutino
 - glavna gorutina se zažene, ko se proces začne izvajati
 
-- jezik go sledi sočasnemu modelu razcepi-pridruži (*angl.* fork-join)
+- jezik go podpira sočasni model razcepi-pridruži (*angl.* fork-join)
 
     <img src="slike/razcepi-pridruzi.png" width="75%">
 
@@ -66,7 +66,7 @@
 
   [pozdrav-1.go](koda/pozdrav-1.go)
 
-  ```go
+  ```bash
   $ module load Go
   $ srun --reservation=fri --ntasks=1 --cpus-per-task=2 go run pozdrav-1.go
       
@@ -80,7 +80,7 @@
 
   - funkcija `hello` se izvaja v svoji gorutini
   - ni točke pridruževanja, zaključila se bo enkrat v prihodnosti, preostali program se bo izvajal naprej
-  - zelo verjetno se gorutina `hello` sploh ne bo zagnala, saj se bo glavna rutina zaključila prej
+  - lahko da se gorutina `hello` sploh ne bo zagnala, saj se bo glavna gorutina zaključila prej
 
 - zakasnimo glavno gorutino
 
@@ -93,7 +93,7 @@
   [pozdrav-4.go](koda/pozdrav-4.go)
   - uporabimo sinhronizacijo, paket `sync`
   - definiramo skupino gorutin, ki jih želimo na neki točki pridružiti (`WaitGroup`)
-  - povemo koliko gorutin bomo ustvarili (`wg.Add()`)
+  - povemo, koliko gorutin bomo ustvarili (`wg.Add()`)
   - vsaka gorutina sporoči skupini, da je zaključila (`wg.Done()`)
   - določimo točko pridruževanja (`wg.Wait()`)
   - `WaitGroup` je neke vrste števec, prirejen za sočasno izvajanje, ki ga povečujemo in zmanjšujemo ter z njim na neki točki zadržimo izvajanje gorutine
@@ -107,9 +107,6 @@
   - glavna gorutina čaka, da se dodatne gorutine zaključijo
 
   [pozdrav-5b.go](koda/pozdrav-5b.go)
-  - jezik go ne jamči vrstnega reda izvajanja gorutin
-  - izvajanje gorutine se lahko začasno ustavi
-  - gorutino lahko kličemo z argumenti
   - glavna gorutina tudi opravi delo
 
 ## Kanali [OPG:10.2]
@@ -145,7 +142,7 @@
 
     ```go
     dataStreamRead = dataStream
-    dataStremWrite = dataStream
+    dataStreamWrite = dataStream
     ```
 
 - operator `<-` uporabljamo za pisanje vrednosti v kanal in za branje vrednosti iz kanala
@@ -186,14 +183,14 @@
 
     [pozdrav-6a.go](koda/pozdrav-6a.go)
 
-  - glavna gorutina ustvari kanal
-  - dodatne gorutine v kanal pišejo
-  - zadnja dodatna gorutina se konča pred zadnjim branjem glavne gorutine
+    - glavna gorutina ustvari kanal
+    - dodatni gorutini v kanal pišeta
+    - zadnja dodatna gorutina zaključi pred zadnjim branjem glavne gorutine
 
     [pozdrav-6b.go](koda/pozdrav-6b.go)
   
-  - glavna gorutina ne bere iz kanala
-  - dodatni gorutini čakata (izvajanje je blokirano)
+    - glavna gorutina ne bere iz kanala
+    - dodatni gorutini čakata (izvajanje je blokirano)
 
 - kanali z medpomnilnikom definirane velikosti
 
@@ -201,7 +198,7 @@
     var bufferStream = make(chan string, 4)
     ```
 
-  - v kanal `bufferStream` lahko zapišemo štiri vrednosti preden katerokoli vrednost preberemo
+  - v kanal `bufferStream` lahko zapišemo štiri vrednosti, preden katerokoli vrednost preberemo
 
       <img src="slike/kanal-z-medpomnilnikom.png" width="60%" />
 
@@ -211,8 +208,8 @@
     [pozdrav-7.go](koda/pozdrav-7.go)
 
     - glavna gorutina ustvari kanal z medpomnilnikom za vsa sporočila
-    - dodatne gorutine v kanal pišejo
-    - vse dodatne gorutine se končajo pred izpisovanjem v glavni gorutini
+    - dodatni gorutini v kanal pišeta
+    - dodatni gorutini se končata pred izpisovanjem v glavni gorutini
 
 - zapiranje kanalov
 
@@ -235,9 +232,9 @@
 
     [pozdrav-8.go](koda/pozdrav-8.go)
 
-    - glavna gorutina ustvari kanal z medpomnilnikom za vsa sporočila
-    - dodatne gorutine v kanal pišejo
-    - vse dodatne gorutine se končajo pred izpisovanjem v glavni gorutini
+    - glavna gorutina ustvari kanal z medpomnilnikom za eno sporočilo
+    - dodatna gorutina v kanal piše
+    - dodatna gorutina se končaa pred izpisovanjem v glavni gorutini
     - glavna gorutina želi prebrati eno vrednost preveč; ker smo kanal predhodno zaprli, dobimo privzeto vrednost, zastavica `ok` pa je `false`
 
     [pozdrav-9.go](koda/pozdrav-9.go)
@@ -254,11 +251,11 @@
   - vanj piše
   - ga zapre
 
-    na ta način preprečimo delo z zaprtim kanalom (vzpostavitev, pisanje, večkratno zapiranje)
+    na ta način preprečimo delo z zaprtim kanalom (pisanje na zaprt kanal, večkratno zapiranje)
 
 - gorutina, ki bere
 
-  - mora preverjati ali je kanal odprt ali zaprt
+  - mora preverjati, ali je kanal odprt ali zaprt
   - paziti, da ne pride do smrtnega objema
 
 - primer: [velike-crke.go](koda/velike-crke.go)
@@ -266,11 +263,11 @@
   - dve funkciji: prva sporočilo pošilja po znakih v kanal; druga znake bere, male črke pretvarja v velike in sestavlja sporočilo
   - v funkciji `main` ne uporabimo ključne besede `go`
   - v funkciji `getLettersFromMessage` najprej ustvarimo kanal, nato pa s ključno besedo `go` pokličemo anonimno funkcijo (gorutino), ki piše v kanal in ga na koncu zapre
-  - funkcija `getUppercaseMessageFromLetters` bere znake dokler je kanal odprt; kanal je odprt samo za branje, da preprečimo morebitne nevšečnosti ob pisanju v zaprti kanal
+  - funkcija `getMessageFromLetters` bere znake dokler je kanal odprt; kanal je odprt samo za branje, da preprečimo morebitne nevšečnosti ob pisanju v zaprti kanal
 
 ### Sinhronizacija s kanali
 
-- kanal uporabimo kot sinhronizacijski element, po njem nič ne prenašamo
+- kanal lahko uporabimo kot sinhronizacijski element, pri tem po njem nič ne prenašamo
 - da gre za sinhronizacijski element, dodatno poudarimo s kanalom za podatkovni tip `struct{}` (prazna struktura)
 
 - primer: [razglas.go](koda/razglas.go)
@@ -284,18 +281,19 @@
 - stavek `select` je posebnost jezika go, pomemben element pri obvladovanju sočasnosti
 - podobno, kot s kanali povezujemo gorutine, s stavkom `select` povezujemo kanale
 - sintaksa stavka `select` je zelo podobna sintaksi stavka `switch`
-  - stavka `select` in `switch` vključujeta množico vej, podanih s stavkom `case`
-  - za razliko od stavka `case`, kjer testiranje poteka zaporedno, se pri stavku `select` izvede samo tista veja, ki ima pogoje
+  - stavka `switch` in `select` vključujeta množico vej, podanih s stavkom `case`
+  - za razliko od stavka `switch`, kjer testiranje poteka zaporedno, se pri stavku `select` izvede samo tista veja, ki ima pogoje
 - stavek `select` čaka, da se na enem od kanalov, ki jih vključuje, nekaj zgodi
   - do branja pride, če se pojavi vsebina ali se kanal zapre
   - do pisanja pride, če je v kanalu prostor
   - če ni pogojev za branje ali pisanje, stavek `select` blokira izvajanje
-- čakanje na dogodek tako ne poteka v neskončni zanki in zato le malenkostno obremenjuje procesor
+- čakanje na dogodek ne poteka v neskončni zanki in zato le malenkostno obremenjuje procesor (izjema je uporaba privzete veje)
 - s stavkom `select` čakamo na sporočila, poskrbimo za njihovo obdelavo, prekličemo gorutino zaradi napake ali izteka časa 
 - če ima pri stavku `select` več vej pogoje za izvajanje, izvajalni sistem jezika go naključno izbere in izvede eno od njih
-  - jezik go ne pozna vsebine naše programske kode, zato ne more vedeti katera veja ima prioriteto
+  - jezik go ne pozna vsebine naše programske kode, zato ne more vedeti, katera veja ima prioriteto
   - brez poznavanja ozadja je zato pri izvajanju najrazličnejših programov najbolj enostavno in sprejemljivo naključno izbiranje
 - če nobena veja v stavku `select` nima pogojev za izvajanje, se, če je napisana, izvede privzeta koda
+- uporabi privzete veje `default` se izogibamo, saj vsakič zaključi stavek `select`; če je stavek `select` del neskončne zanke `for` neprestano klicanje stavkov `select` močno obremeni procesor
 
 - [povezovanje-kanalov-1.go](koda/povezovanje-kanalov-1.go)
   - gorutina `reader` posluša na dveh kanalih
@@ -303,11 +301,12 @@
 
 - [povezovanje-kanalov-2.go](koda/povezovanje-kanalov-2.go)
   - če ne dobimo nobenega sporočila, gorutina čaka (blokira)
-  - s kanalom `time.After` iz paketa `time` lahko, poskrbimo, da se gorutina zaključi, ko prekorači dovoljeni čas izvajanja; če ob vsakem izvajanju stavka `select` ustvarimo nov kanal `time.After`, ga lahko uporabimo za detekcijo predolgotrajnega izvajanja
+  - s kanalom `time.After` iz paketa `time` lahko poskrbimo, da se gorutina zaključi, ko prekorači dovoljeni čas izvajanja; če ob vsakem izvajanju stavka `select` ustvarimo nov kanal `time.After`, ga lahko uporabimo za detekcijo predolgotrajnega izvajanja
 
 - [povezovanje-kanalov-3.go](koda/povezovanje-kanalov-3.go)
   - če se na kanalih nič ne dogaja, lahko izvedemo privzeto vejo
   - privzeta veja se izvaja zelo pogosto, zato do prekoračitve časa izvajanja skoraj ne pride več
+  - privzeta veja brez kode je slaba rešitev, saj se stavek `select` vsakič takoj zaključi, nato pa se začne v neskončni zanki izvajatu nov; za izvjanje močno obremenimo procesor
 
 - [povezovanje-kanalov-4.go](koda/povezovanje-kanalov-4.go)
-  - dodamo še kanal, preko katerega glavna gorutina sporoči gorutini `reader` naj zaključi izvajanje
+  - dodamo še kanal, preko katerega glavna gorutina sporoči gorutini `reader`, naj zaključi izvajanje

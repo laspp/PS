@@ -8,7 +8,6 @@ package main
 import (
 	"fmt"
 	"strconv"
-	"time"
 )
 
 const printouts = 10
@@ -19,6 +18,7 @@ func hello(s string) {
 	fmt.Println("Goroutine", s, "start")
 	for i := 0; i < printouts; i++ {
 		stringStream <- s + "-" + strconv.Itoa(i)
+		fmt.Println("Iteration", i, "done")
 	}
 	fmt.Println("Goroutine", s, "done")
 }
@@ -30,10 +30,9 @@ func main() {
 	go hello("hello")
 	go hello("world")
 
-	time.Sleep(100 * time.Millisecond)
-
+	var msg string
 	for i := 0; i < 2*printouts; i++ {
-		msg := <-stringStream
+		msg = <-stringStream
 		fmt.Print(msg, " ")
 	}
 	fmt.Println()
