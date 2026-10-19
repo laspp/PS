@@ -6,7 +6,7 @@
 
     <img src="slike/vozlisce-programska-oprema.png" width="25%"/>
 
-- je programska oprema, ki izvaja osnova opravila, kot so:
+- je programska oprema, ki izvaja osnovna opravila, kot so:
   - upravljanje procesorjev
   - upravljanje pomnilnika
   - nadzor V/I naprav
@@ -20,7 +20,7 @@
   - računalniški viri so dodeljeni različnim procesom, vsak dobi svoj delež glede na prioritete
   - preklapljanje med procesi in porazdeljevanje procesorskih virov med njih
   - preklapljanje med procesi ni zastonj
-    - shraniti je treba vse vire (rokovalnike do datotek, programski števec, skladovni kazalec)
+    - shraniti je treba vse vire (stanje procesorja, programski števec, skladovni kazalec), zamenjati naslovni prostor (tabela strani, TLB)
     - ob ponovni aktivaciji procesa jih je treba spet rekonstruirati
 - moderni operacijski sistemi so sočasni
 
@@ -32,7 +32,7 @@
   - del prostega pomnilnika, ki ga operacijski sistem varuje pred dostopom drugih procesov
   - dostop do komunikacijskih vrat in V/I naprav
   - rokovalnike do datotek, ki jih potrebuje program
-- proces najprej zažene kodo, ki postori zgornje, nato zažene funkcijo `main()` v  programu
+- nalagalnik operacijskega sistema najprej ustvari proces, potem operacijski sistem zažene kodo, ki postori zgornje, nazadnje zažene funkcijo `main()` v programu
 - dodeljevanje pomnilnika
   - programska koda in dinamične knjižnice
   - globalne spremenljivke, definirane zunaj funkcije `main()`
@@ -49,7 +49,8 @@
 - iz glavne niti lahko po potrebi zaženemo dodatne niti
   - s tem ustvarimo nov zaporedni programski tok, ki se izvaja asinhrono z glavnim
   - glavni programski tok se izvaja naprej nemoteno
-  - od tu dalje sta glavna in dodatna nit enakovredni
+  - od tu dalje sta glavna in dodatna nit zelo enakovredni
+  - ko se zaključi glavna nit, se zaključijo tudi vse niti, ki jih je ustvarila
   - dodatno nit lahko po potrebi pridružimo glavni niti
 
     <img src="slike/vecnitno-izvajanje.png" width="60%"/>
@@ -60,7 +61,7 @@
   - če niti izvajajo neodvisne programske tokove na več jedrih hkrati, govorimo o vzporednem procesiranju
 - programske in strojne niti
   - strojne niti omogočajo hkratno izvajanje več ločenih programskih tokov
-  - operacijski sistem določi katera strojna nit bo izvajala neko programska nit
+  - operacijski sistem določi katera strojna nit bo izvajala neko programsko nit
 
 ### Organizacija pomnilnika v večnitnem procesu
 
@@ -70,7 +71,7 @@
 - vse niti lahko dostopajo do programske kode
 - vse niti lahko dostopajo do dinamično dodeljenega pomnilnika (kopica)
 - niti si delijo dostop do datotek, vrat, V/I naprav
-- lokalne spremenljivke na skladu so privatne za vsako nit
+- lokalne spremenljivke na skladu po priporočilih držimo privatne za vsako nit
 - če nit deli pomnilniški naslov z ostalimi nitmi, lahko te dostopajo do njenega lokalnega pomnilnika
 
 Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
@@ -84,7 +85,7 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
   - ob klicu funkcije na sklad shranimo povratni naslov in argumente, nato tudi vse spremenljivke
   - ob vračanju se vse lokalne spremenljivke in argumenti odstranijo iz sklada, program nadaljuje izvajanje na povratnem naslovu
 - če ima proces več niti kot ima procesor jeder, operacijski sistem preklaplja med nitmi
-- preklapljanje med nitmi je učinkovitejše od preklapljanja med procesi, saj ni treba shranjevati stanja virov, ki so na voljo vsem nitim
+- preklapljanje med nitmi je učinkovitejše od preklapljanja med procesi, saj ni treba shranjevati stanja virov, ki so na voljo vsem nitim (stanje procesorja, naslovni prostor)
 - niti so "lahki" procesi s poenostavljenim upravljanjem virov
 - lahko jih razumemo tudi kot "napredne" funkcije, ki imajo svoje izvajalno okolje
 
@@ -92,13 +93,14 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
 
 <img src="slike/nit-zivljenski-cikel.png" width="75%">
 
-- pripravljena: čaka v bazenu niti, da ji bo razvrščevalnik dodelil procesor
+- pripravljena: čaka v vrsti pripravljenih niti, da ji bo razvrščevalnik dodelil procesor
 - v izvajanju: nit se izvaja na procesorju
 - blokirana: izvajanje niti je zaustavljeno
   - operacijski sistem jo vrne v stanje pripravljenosti preden isto jedro začne izvajati drugo nit
   - programska blokada ob čakanju na pogoje
   - ko je nit blokirana, ne rabi procesorskih virov
-- zaustavljena:
+  . blokirana nit gre v stanje pripravljenosti, ko se izvede dogodek, na katerega čaka
+- zaključena:
   - ko je zaključila z delom
   - ko je prekinitev izvajanja zahtevala druga nit
 
@@ -106,7 +108,7 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
 
 - vzporedno izvajanje
 - prepletanje računanja in komunikacije (računanje se lahko izvaja medtem, ko nit čaka na V/I)
-- večnitni strežniki (spletne storitve, ena nit za vsakega uporabnika)
+- večnitni strežniki (spletne storitve, ena nit na povezavo)
 - grafični vmesniki (vsaj ena dodatna nit za obdelovanje dogodkov)
 
 ## Programski in izvajalni model
@@ -136,14 +138,14 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
   - program ustvari niti
     - so blokirane in čakajo v bazenu niti
     - po potrebi jih programski razvrščevalnik (knjižnica) zbudi
-      - lahko vsako nalogo izvaja svoja nit, ali pa imamo več nalog kot niti
+      - lahko vsako nalogo izvaja svoja nit ali pa imamo več nalog kot niti
   - program ustvarja naloge, ki jih oddaja v bazen nalog
   - naloge se izvajajo takrat, ko so niti na voljo
   - naloge dodeljuje nitim programski razvrščevalnik (knjižnica, jezik)
     - naloge se lahko izvajajo v drugačnem vrstnem redu, kot so bile oddane v bazen
 
 - stanja nalog:
-  - čakajoča
+  - čaka na vire
   - pripravljena za izvajanje
   - v izvajanju
 
@@ -153,11 +155,11 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
 
   - razvrščevalnik $M: N$, razvršča $M$ nalog na $N$ niti ($M > N$, $N$ je običajno enak številu procesorjev)
   - nalogo da na čakanje takoj, ko je njeno izvajanje blokirano, in zažene drugo nalogo iz bazena
-  - koncept je podoben kot pri nitih, vendar samo ko pride do blokade, ne pa tudi zaradi porazdeljevanja procesorskih virov med naloge
-  - s tem, ko neprestano preklaplja med blokiranimi in neblokiranimi nalogami, skrbi, da niti nikoli ne čakajo in procesor nima razloga za zamenjavo z drugimi nitmi
+  - koncept je podoben kot pri nitih, vendar samo ko pride do blokade, ne pa tudi zaradi porazdeljevanja procesorskih virov med naloge (nove različice go dovoljujejo preklop tudi zaradi porazdeljevanja procesorskih virov)
+  - s tem, ko neprestano preklaplja med blokiranimi in neblokiranimi nalogami, skrbi, da niti veliko manj čakajo in procesor večino časa nima razloga za zamenjavo z drugimi nitmi
   - preklapljanje med nitmi ~12k ukazov, preklapljanje med nalogami ~2,4k ukazov
   - precej kompleksen: globalni seznam nalog, seznam nalog za vsako nit, LIFO in FIFO, kraja
-  - vir: [William Kennedy: Scheduling In Go](https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part1.html)
+  - vir: [William Kennedy: Scheduling In Go, part 1](https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part1.html), [William Kennedy: Scheduling In Go, part 2](https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part2.html)
 
 <img src="slike/naloge-niti-procesorji.png" width="75%"/>
 
