@@ -21,11 +21,6 @@ func main() {
 	fmt.Println(s2)
 	fmt.Println(fibonacci)
 
-	// Rezino lahko ustvarimo tudi neposredno
-	// hkrati se ustvari tabela s podatki in rezina, ki kaže na tabelo
-	letters := []string{"a", "b", "c", "d"}
-	fmt.Println(letters)
-
 	// Vsaka rezina ima definirano dolžino in kapaciteto
 	fmt.Printf("Dolzina s1:%d, Kapaciteta s1:%d\nDolzina s2:%d, Kapaciteta s2:%d\n", len(s1), cap(s1), len(s2), cap(s2))
 
@@ -33,6 +28,17 @@ func main() {
 	// Pri tem ne pride do odvečnega kopiranja podatkov
 	s1 = s1[:4]
 	fmt.Printf("Dolzina s1:%d | %d, %d, %d %d\n", len(s1), s1[0], s1[1], s1[2], s1[3])
+
+	// Rezino lahko ustvarimo tudi neposredno
+	// hkrati se ustvari tabela s podatki in rezina, ki kaže na tabelo
+	letters := []string{"a", "b", "c", "d"}
+	fmt.Println(letters)
+
+	// Rezini lahko dodajamo elemente s funkcijo append
+	// Dolžina in kapaciteta rezine se povečata
+	fmt.Printf("Dolzina letters:%d, Kapaciteta letters:%d | %v\n", len(letters), cap(letters), letters)
+	letters = append(letters, "e", "f")
+	fmt.Printf("Dolzina letters:%d, Kapaciteta letters:%d | %v\n", len(letters), cap(letters), letters)
 
 	// Rezine lahko dinamično ustvarjamo s pomočjo funkcije make
 	// Rezina s3 bo inicializirana z ničelnimi vrednosti in bo imela dolžino ter kapaciteto enako 5
@@ -50,12 +56,6 @@ func main() {
 		[]int{4, 3, 8},
 	}
 	fmt.Println(magic)
-
-	// Rezini lahko dodajamo elemente s funkcijo append
-	// Dolžina in kapaciteta rezine se povečata
-	fmt.Printf("Dolzina letters:%d, Kapaciteta letters:%d | %v\n", len(letters), cap(letters), letters)
-	letters = append(letters, "e", "f")
-	fmt.Printf("Dolzina letters:%d, Kapaciteta letters:%d | %v\n", len(letters), cap(letters), letters)
 
 	// Rezine lahko kopiramo
 	copy(s3, s1)
