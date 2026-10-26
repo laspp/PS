@@ -306,7 +306,7 @@
 - [povezovanje-kanalov-3.go](koda/povezovanje-kanalov-3.go)
   - če se na kanalih nič ne dogaja, lahko izvedemo privzeto vejo
   - privzeta veja se izvaja zelo pogosto, zato do prekoračitve časa izvajanja skoraj ne pride več
-  - privzeta veja brez kode je slaba rešitev, saj se stavek `select` vsakič takoj zaključi, nato pa se začne v neskončni zanki izvajatu nov; za izvjanje močno obremenimo procesor
+  - privzeta veja brez kode je slaba rešitev, saj se stavek `select` vsakič takoj zaključi, nato pa se začne v neskončni zanki izvajati nov; neprestano izvajanje zanke `for` močno obremeni procesor
 
 - [povezovanje-kanalov-4.go](koda/povezovanje-kanalov-4.go)
   - dodamo še kanal, preko katerega glavna gorutina sporoči gorutini `reader`, naj zaključi izvajanje
