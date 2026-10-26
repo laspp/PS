@@ -27,5 +27,5 @@
 
 - Teden 04:
   - predavanja:
-    [sinhronizacija-1](predavanja/06-sinhronizacija-1/sinhronizacija-1.md)
+    [sinhronizacija: ključavnice](predavanja/06-sinhronizacija-1/sinhronizacija-1.md)
   - vaje: [sočasno programiranje v go](vaje/03-gorutine/Socasno_programiranje_go.md) 
