@@ -25,3 +25,7 @@
     [jezik go](predavanja/05-go/go.md)  
   - vaje: [jezik go](vaje/02-programski-jezik-go/Uvod_v_go.md) 
 
+- Teden 04:
+  - predavanja:
+  - vaje: [sočasno programiranje v go](vaje/03-gorutine/Socasno_programiranje_go.md) 
+

@@ -278,7 +278,7 @@ Od različice Go 1.25 dalje ima čakalna skupina tudi metodo `Go`, ki v novi gor
 	wg.Wait()
 ```
 
-Če iz delavcev odstranimo ključavnico, pride do tveganega stanja (angl. *race condition*): več gorutin hkrati bere in piše spremenljivko `wc`, zato končna vrednost števca ni nujno enaka 0. Takšne napake se pogosto pokažejo le občasno, zato jih je težko odkriti s samim poganjanjem programa. Pri tem nam pomaga detektor tveganih stanj, ki je vgrajen v orodja jezika Go. Vklopimo ga z zastavico `-race` (iz mape `koda`):
+Če iz delavcev odstranimo ključavnico, pride do tveganega stanja (angl. *race condition*): več gorutin hkrati bere in piše spremenljivko `wc`, zato končna vrednost števca ni nujno enaka 0. Takšne napake se pogosto pokažejo le občasno, zato jih je težko odkriti s samim poganjanjem programa. Pri tem nam pomaga detektor tveganih stanj, ki je vgrajen v orodja jezika Go. Vklopimo ga z zastavico `-race`:
 ```Bash
 go run -race ./04-sync
 ```
