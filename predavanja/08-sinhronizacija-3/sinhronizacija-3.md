@@ -57,10 +57,13 @@
     - podobna rešitev kot [pregrada-3a.go](koda/pregrada-3a.go), le da fazo v zanki beremo pod bralno-pisalno ključavnico (`RLock`)
     - tveganega stanja ni več, gorutine pa še vedno porabljajo procesor z vrtenjem v zanki
 
-  - [pregrada-4.go](koda/pregrada-4.go)
+  - [pregrada-4a.go](koda/pregrada-4a.go)
     - podobna rešitev kot [pregrada-3b.go](koda/pregrada-3b.go), vendar gorutine namesto vrtenja v zanki čakajo, da se v kanalu pojavi sporočilo
     - rešitev s kanali je bolj elegantna: gorutina je blokirana, medtem ko čaka, da se v kanalu pojavi podatek
     - dva kanala, z enim nadziramo prihajanje gorutin k pregradi (vrata 0), z drugim odhajanje gorutin od pregrade (vrata 1)
+
+  - [pregrada-4b.go](koda/pregrada-4b.go)
+    - uporabljamo koncept vrat, le da ob vsakem prehodu ustvarimo nova vrata (odpremo nov kanal in sarega zapremo)
 
   - [pregrada-5.go](koda/pregrada-5.go)
     - ustvarimo pogojno spremenljivko in jo povežemo s ključavnico

@@ -1,9 +1,5 @@
 // Pregrada
-// dva kanala, princip dvojih vrat
-// 		najprej počakamo, da vse gorutine pridejo čez vrata 0; zadnja odpre vrata 1
-//      nato počakamo, da vse gorutine pridejo čez vrata 1; zadnja odpre vrata 0
-// 		kanala imata kapaciteto 1, da zadnja gorutina lahko sprosti sama sebe
-//		kanala sta tipa struct{}, s čimer poudarimo, da ju uporabljamo za sinhronizacijo
+// en kanal, vsakič naredimo nova vrata
 
 package main
 
@@ -19,8 +15,7 @@ var wg sync.WaitGroup
 var goroutines int
 var g int
 var lock sync.Mutex
-var door1 = make(chan struct{}, 1)
-var door0 = make(chan struct{}, 1)
+var door = make(chan struct{})
 
 func barrier(id int, printouts int) {
 
@@ -33,27 +28,16 @@ func barrier(id int, printouts int) {
 		fmt.Println("Goroutine", id, "printout", i)
 
 		// pregrada - začetek
-		// vrata 0 odprta
 		lock.Lock()
+		myDoor := door
 		g++
 		if g == goroutines {
-			for j := 0; j < goroutines; j++ {
-				door1 <- struct{}{} // zadnja gorutina odpre vrata 1
-			}
+			g = 0
+			door = make(chan struct{})
+			close(myDoor)
 		}
 		lock.Unlock()
-		<-door1 // gorutine čakajo pred zaprtimi vrati
-
-		// vrata 1 odprta
-		lock.Lock()
-		g--
-		if g == 0 {
-			for j := 0; j < goroutines; j++ {
-				door0 <- struct{}{} // zadnja gorutina odpre vrata 0
-			}
-		}
-		lock.Unlock()
-		<-door0 // gorutine čakajo pred zaprtimi vrati
+		<-myDoor
 		// pregrada - konec
 	}
 }
@@ -65,6 +49,7 @@ func main() {
 	flag.Parse()
 
 	goroutines = *gPtr
+	door = make(chan struct{}, goroutines)
 
 	// zaženemo gorutine
 	wg.Add(goroutines)
