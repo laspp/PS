@@ -19,7 +19,7 @@ var wg sync.WaitGroup
 var goroutines int
 var g int
 var rwlock sync.RWMutex
-var phase int = 1 // vrata 0 so zaprta, odpre jih prva gorutina
+var phase int
 
 func barrier(id int, printouts int) {
 	defer wg.Done()
