@@ -34,4 +34,4 @@
   - predavanja:
     [sinhronizacija: semaforji in bralno-pisalne ključavnice](predavanja/07-sinhronizacija-2/sinhronizacija-2.md),
     [sinhronizacija: pogojne spremenljivke](predavanja/08-sinhronizacija-3/sinhronizacija-3.md)
-  - vaje:
+  - vaje: [metode in vmesniki](vaje/04-metode-vmesniki/Metode-vmesniki.md)
