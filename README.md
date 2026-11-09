@@ -38,4 +38,11 @@
 
 - Teden 06:
   - predavanja:
+    [varna sočasnost](predavanja/09-varna-socasnost/varna-socasnost.md)
   - vaje: [proizvajalci-porabniki](vaje/05-proizvajalci-porabniki/Proizvajalci-porabniki.md) 
+
+ ### Sistemi s porazdeljenim pomnilnikom
+
+- Teden 07:
+  - predavanja:
+    [posredovanje sporočil: osnove](predavanja/10-posredovanje-sporocil-1/posredovanje-sporocil-1.md)
