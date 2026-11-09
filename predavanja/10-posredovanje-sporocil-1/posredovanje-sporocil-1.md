@@ -52,7 +52,7 @@ Porazdeljeni sistem je tisti, v katerem okvara računalnika, za katerega sploh n
 - odpornost (*angl.* resiliency)
   - porazdeljeni sistem je odporen, če lahko nadaljuje z delom tudi ob napaki (odpoved vozlišča, napake na omrežju)
   - ne glede na to, kako majhna je verjetnost za napako, večji kot je porazdeljeni sistem, večja je verjetnost, da bo do napake prišlo
-  - razpoložljivost sistema je delež časa, ko je sistem na voljo; običajno se meri s številom devetic (99,99 % predstavlja da sistem ni navoljo do 53 minut na leto)
+  - razpoložljivost sistema je delež časa, ko je sistem na voljo; običajno se meri s številom devetic (99,99 % pomeni, da sistem ni razpoložljiv do 53 minut na leto)
 - vzdrževanje
   - običajno je vzdrževanje dražje od same vzpostavitve sistema
   - dobre prakse: pisanje testov enot, velika stopnja parametrizacije, DevOps (načrtovanje, izvedba, testiranje in nadzor delovanja)
