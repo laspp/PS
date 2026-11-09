@@ -35,10 +35,10 @@ func producer(id int, products int, bufferSize int) {
 	for i := 0; i < products; i++ {
 		createProduct(id, i+1, &product)
 
-		fmt.Println("P->b", id, product.Id)
 		buffer[bufferIdxPut] = product
 		bufferIdxPut = (bufferIdxPut + 1) % bufferSize
 		bufferNumProducts++
+		fmt.Println("P->b", id, product.Id)
 	}
 }
 

@@ -33,8 +33,8 @@ func producer(id int, products int) {
 	for i := 0; i < products; i++ {
 		createProduct(id, i+1, &product)
 		// vpišemo v medpomnilnik
-		fmt.Println("P->b", id, product.Id)
 		bufferStream <- product
+		fmt.Println("P->b", id, product.Id)
 	}
 }
 

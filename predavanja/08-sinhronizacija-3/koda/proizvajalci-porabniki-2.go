@@ -44,10 +44,10 @@ func producer(id int, products int, bufferSize int) {
 			condProducers.Wait()
 		}
 
-		fmt.Println("P->b", id, product.Id)
 		buffer[bufferIdxPut] = product
 		bufferIdxPut = (bufferIdxPut + 1) % bufferSize
 		bufferNumProducts++
+		fmt.Println("P->b", id, product.Id)
 
 		condConsumers.Signal()
 		condProducers.L.Unlock()

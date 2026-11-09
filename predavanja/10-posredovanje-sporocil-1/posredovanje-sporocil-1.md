@@ -76,7 +76,7 @@ Porazdeljeni sistem je tisti, v katerem okvara računalnika, za katerega sploh n
 - prenos podatkov na pošiljatelju poteka od višje plasti proti nižji, na strani sprejemnika pa od nižje proti višji plasti
   - povezovalna plast vključuje lokalne omrežne protokole (Ethernet); naprave na tej plasti so stikala
   - internetna plast s protokolom IP (*angl.* internet protocol) skrbi za usmerjanje paketov podatkov v omrežju; paketi se lahko izgubijo, podvojijo, pokvarijo, ne prihajajo v pravem vrstnem redu; naprave na tej plasti so usmerjevalniki
-  - transportna plast s protokolom TCP (*angl.* transmission control protocol) skrbi za zanesljiv prenos podatkov med dvema procesoma (ni izgube paketov, podvajanja, napak); da imamo na istem vozlišču lahko več aktivnih procesov, vsakemu procesu dodelimo vrata (*angl.* port); vrata predstavljajo logično oznako procesa v omrežju
+  - transportna plast s protokolom TCP (*angl.* transmission control protocol) skrbi za zanesljiv prenos podatkov med dvema procesoma (ni izgube paketov, podvajanja, napak); da imamo na istem vozlišču lahko več aktivnih procesov, vsakemu procesu dodelimo vtičnice
   - aplikacijska plast s protokoli kot sta HTTP, DNS (*angl.* domain name system) je tista, ki jo najpogosteje uporabljamo
 - višje plasti so kompleksnejše – gradijo na nižjih plasteh in dodajajo funkcionalnosti
   - TCP nadgrajuje IP
