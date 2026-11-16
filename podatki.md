@@ -25,14 +25,14 @@
 
 - [IPP] P. S. Pacheco, M. Malensek: An introduction to parallel programming, 2nd edition, Morgan Kaufmann, 2022
 - [SMAP] V. Alessandrini: Shared Memory Application Programming - Concepts and strategies in multicore application programming, Morgan Kaufmann, 2016
-- [IPG] C. Doxsey: [An introduction to programming in Go](https://www.golang-book.com/books/intro), samozaložba, 2012
+- [IPG] C. Doxsey: [An introduction to programming in Go](https://zhjwpku.com/assets/pdf/AnIntroductionToProgrammingInGo.pdf), samozaložba, 2012
 - [CG] K. Cox-Buday: Concurrency in Go - Tools and Techniques for Developers, O’Reilly, 2017
 - [UDS] R. Vitillo, Understanding Distributed Systems, samozaložba, 2022
 
 ---
 
 - [LBS] A. B. Downey, [The little book of semaphores](https://greenteapress.com/semaphores/LittleBookOfSemaphores.pdf)
-- [IPC] R. Trobec, B. Slivnik, P. Bulić, B. Robič: [Introduction to Parallel Computing](https://ucilnica.fri.uni-lj.si/pluginfile.php/132969/mod_resource/content/1/Introduction%2Bto%2BParallel%2BComputing.pdf), Springer, 2018
+- [IPC] R. Trobec, B. Slivnik, P. Bulić, B. Robič: Introduction to Parallel Computing, Springer, 2018
 - [PPM] N. Matloff: [Programming on Parallel Machines](http://heather.cs.ucdavis.edu/~matloff/158/PLN/ParProcBook.pdf), University of California, Davis, 2017
 - [CDS] M. Kleppman: [Concurrent and Distributed System](https://www.cl.cam.ac.uk/teaching/2425/ConcDisSys/dist-sys-notes.pdf), University of Cambridge, 2024
 
