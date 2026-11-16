@@ -82,7 +82,7 @@ func Client(url string) {
 	}
 }
 
-// ustvarimo zapis
+// ustvarimo zapis, varianta 1
 func createWithPost(url string, todo storage.Todo) error {
 	jsonBody, err := json.Marshal(todo)
 	if err != nil {
@@ -99,7 +99,7 @@ func createWithPost(url string, todo storage.Todo) error {
 	return nil
 }
 
-// preberemo zapise
+// preberemo zapise, varianta 1
 func readWithGet(url string, todo storage.Todo, todoList *map[string]storage.Todo) error {
 	resp, err := http.Get(url + todo.Task)
 	if err != nil {
@@ -113,7 +113,7 @@ func readWithGet(url string, todo storage.Todo, todoList *map[string]storage.Tod
 	return err
 }
 
-// ustvarimo zapis
+// ustvarimo zapis, varianta 2
 func create(url string, todo storage.Todo) error {
 	jsonBody, err := json.Marshal(todo)
 	if err != nil {
@@ -135,7 +135,7 @@ func create(url string, todo storage.Todo) error {
 	return nil
 }
 
-// preberemo zapise
+// preberemo zapise, varianta 2
 func read(url string, todo storage.Todo, todoList *map[string]storage.Todo) error {
 	jsonBody, err := json.Marshal(todo)
 	if err != nil {
