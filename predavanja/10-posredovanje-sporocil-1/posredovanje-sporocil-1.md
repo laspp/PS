@@ -133,7 +133,7 @@ Porazdeljeni sistem je tisti, v katerem okvara računalnika, za katerega sploh n
   - ko je prenos podatkov končan, povezavo zapremo, da sprostimo vire
   - zapiranje je spet večstopenjsko rokovanje, ki vzame svoj čas
   - če bomo povezavo kmalu ponovno rabili, je raje ne zapremo
-  - povezava se ne zapre hipoma – sistem še nekaj minut čaka na pakete, ki so morda še na poti
+  - povezava se ne zapre hipoma – sistem še nekaj časa (tudi minuto) čaka na pakete, ki so morda še na poti
   - pogosto odpiranje in zapiranje povezav lahko privede do tega, da imamo odprto maksimalno število hkratnih povezav in začne vozlišče zavračati nove povezave
 
 ### Primeri komunikacije TCP
@@ -162,7 +162,7 @@ Porazdeljeni sistem je tisti, v katerem okvara računalnika, za katerega sploh n
 
 - s protokolom TCP pridobimo na zanesljivosti prenosov na račun manjše prepustnosti
 - kadar zanesljivosti ne potrebujemo, raje uporabimo protokol UDP (*angl.* user datagram protocol)
-- protokol UDP uporablja vrata, pri njem ne vzpostavljamo povezav
+- protokol UDP uporablja vtičnice, pri njem ne vzpostavljamo povezav
 - gre za precej osnoven protokol, ki omogoča hiter prenos podatkov
   - ne zna sam razdeliti podatkovnega toka na pakete, ampak lahko pošilja samo podatkovne pakete omejene dolžine ali datagrame
   - ne pozna potrjevanja, zato datagrami niso oštevilčeni
@@ -189,6 +189,4 @@ Porazdeljeni sistem je tisti, v katerem okvara računalnika, za katerega sploh n
       - strežnik pri vzpostavljanju povezave TLS odjemalcu pošlje certifikat s celotno verigo izdajateljev; odjemalec pregleduje certifikate po verigi navzgor, dokler ne najde izdajatelja, ki mu zaupa; potem pregleda veljavnost certifikatov po verigi navzdol do certifikata strežnika; če je veljaven, je strežnik overovljen
       - paziti moramo, da certifikat ne poteče (marsikatera spletna stran ima s tem težave)
   - integriteto
-    - sporočila so opremljena z zgoščeno vrednostjo (*angl.* hash), da prejemnik lahko preveri, če je prišlo do napake pri prenosu (TCP ni 100 % zanesljiv, preverjanje parnosti) ali do zlonamernega spreminjanja vsebine
-
     - sporočila so opremljena z zgoščeno vrednostjo (*angl.* message authentication code, MAC), izračunano s skupnim ključem; prejemnik lahko preveri, ali je prišlo do napake pri prenosu (kontrolna vsota TCP ni 100 % zanesljiva) ali do zlonamernega spreminjanja vsebine
