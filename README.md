@@ -47,3 +47,4 @@
   - predavanja:
     [posredovanje sporočil: osnove](predavanja/10-posredovanje-sporocil-1/posredovanje-sporocil-1.md)
     [posredovanje sporočil: programski vmesniki](predavanja/11-posredovanje-sporocil-2/posredovanje-sporocil-2.md)
+  - vaje: [Moduli in paketi](vaje/06-moduli-paketi/Moduli-paketi.md)
