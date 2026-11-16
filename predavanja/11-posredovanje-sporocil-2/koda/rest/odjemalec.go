@@ -9,16 +9,22 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
 	"net/http"
 )
 
 func Client(url string) {
+
+	// strukture, ki jih uporabljamo kot argumente pri klicu oddaljenih metod
+	lecturesCreate := storage.Todo{Task: "predavanja", Completed: false}
+	lecturesUpdate := storage.Todo{Task: "predavanja", Completed: true}
+	practicals := storage.Todo{Task: "vaje", Completed: false}
+	readAll := storage.Todo{Task: "", Completed: false}
+
 	fmt.Printf("REST client connecting to %v\n", url)
 
 	// ustvarimo zapis, varianta 1
 	fmt.Print("1. Create: post    : ")
-	if err := createWithPost(url, []byte("{\"task\": \"predavanja\", \"completed\": false}")); err == nil {
+	if err := createWithPost(url, lecturesCreate); err == nil {
 		fmt.Println("done")
 	} else {
 		panic(err)
@@ -26,25 +32,16 @@ func Client(url string) {
 
 	// preberemo zapise, varianta 1
 	fmt.Print("2. Read 1: get     : ")
-	if body, err := readWithGet(url, "predavanja"); err == nil {
-		dict := make(map[string]storage.Todo)
-		err = json.Unmarshal(body, &dict)
-		if err != nil {
-			panic(err)
-		}
-		fmt.Println(dict, ": done")
+	todoList := make(map[string]storage.Todo)
+	if err := readWithGet(url, lecturesUpdate, &todoList); err == nil {
+		fmt.Println(todoList, ": done")
 	} else {
 		panic(err)
 	}
 
 	// ustvarimo zapis, varianta 2
 	fmt.Print("3. Create: req.post: ")
-	todo := storage.Todo{Task: "vaje", Completed: false}
-	jsonBody, err := json.Marshal(&todo)
-	if err != nil {
-		panic(err)
-	}
-	if err := create(url, jsonBody); err == nil {
+	if err := create(url, practicals); err == nil {
 		fmt.Println("done")
 	} else {
 		panic(err)
@@ -52,25 +49,16 @@ func Client(url string) {
 
 	// preberemo zapise, varianta 2
 	fmt.Print("4. Read *: req.get : ")
-	if body, err := read(url, ""); err == nil {
-		dict := make(map[string]storage.Todo)
-		err := json.Unmarshal(body, &dict)
-		if err != nil {
-			panic(err)
-		}
-		fmt.Println(dict, ": done")
+	todoList = make(map[string]storage.Todo)
+	if err := read(url, readAll, &todoList); err == nil {
+		fmt.Println(todoList, ": done")
 	} else {
 		panic(err)
 	}
 
 	// posodobimo zapis
 	fmt.Print("5. Update: req.put : ")
-	todo = storage.Todo{Task: "predavanja", Completed: true}
-	jsonBody, err = json.Marshal(&todo)
-	if err != nil {
-		panic(err)
-	}
-	if err := update(url, "predavanja", jsonBody); err == nil {
+	if err := update(url, lecturesUpdate); err == nil {
 		fmt.Println("done")
 	} else {
 		panic(err)
@@ -78,7 +66,7 @@ func Client(url string) {
 
 	// izbrišemo zapis
 	fmt.Print("6. Delete: req.del : ")
-	if err := delete(url, "vaje"); err == nil {
+	if err := remove(url, practicals); err == nil {
 		fmt.Println("done")
 	} else {
 		panic(err)
@@ -86,47 +74,52 @@ func Client(url string) {
 
 	// še enkrat preberemo
 	fmt.Print("7. Read *: req.get : ")
-	if body, err := read(url, ""); err == nil {
-		dict := make(map[string]storage.Todo)
-		err = json.Unmarshal(body, &dict)
-		if err != nil {
-			panic(err)
-		}
-		fmt.Println(dict, ": done")
+	todoList = make(map[string]storage.Todo)
+	if err := read(url, readAll, &todoList); err == nil {
+		fmt.Println(todoList, ": done")
 	} else {
 		panic(err)
 	}
 }
 
 // ustvarimo zapis
-func createWithPost(url string, jsonBody []byte) error {
-	bodyReader := bytes.NewReader(jsonBody)
-	resp, err := http.Post(url, "application/json", bodyReader)
+func createWithPost(url string, todo storage.Todo) error {
+	jsonBody, err := json.Marshal(todo)
 	if err != nil {
 		return err
 	}
-	defer resp.Body.Close()		// sprosti povezavo
-	if resp.StatusCode != 200 {
-		err = errors.New("create not successful")
+	resp, err := http.Post(url, "application/json", bytes.NewReader(jsonBody))
+	if err != nil {
+		return err
 	}
-	return err
+	defer resp.Body.Close() // sprosti povezavo
+	if resp.StatusCode != 200 {
+		return errors.New("create not successful")
+	}
+	return nil
 }
 
 // preberemo zapise
-func readWithGet(url string, task string) ([]byte, error) {
-	resp, err := http.Get(url + task)
+func readWithGet(url string, todo storage.Todo, todoList *map[string]storage.Todo) error {
+	resp, err := http.Get(url + todo.Task)
 	if err != nil {
-		return []byte{}, err
+		return err
 	}
 	defer resp.Body.Close()
-	resBody, err := io.ReadAll(resp.Body)
-	return resBody, err
+	if resp.StatusCode != 200 {
+		return errors.New("read not successful")
+	}
+	err = json.NewDecoder(resp.Body).Decode(todoList)
+	return err
 }
 
 // ustvarimo zapis
-func create(url string, body []byte) error {
-	bodyReader := bytes.NewReader(body)
-	req, err := http.NewRequest(http.MethodPost, url, bodyReader)
+func create(url string, todo storage.Todo) error {
+	jsonBody, err := json.Marshal(todo)
+	if err != nil {
+		return err
+	}
+	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(jsonBody))
 	if err != nil {
 		return err
 	}
@@ -137,31 +130,41 @@ func create(url string, body []byte) error {
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode != 200 {
-		err = errors.New("create not successful")
+		return errors.New("create not successful")
 	}
-	return err
+	return nil
 }
 
 // preberemo zapise
-func read(url string, task string) ([]byte, error) {
-	req, err := http.NewRequest(http.MethodGet, url+task, nil)
+func read(url string, todo storage.Todo, todoList *map[string]storage.Todo) error {
+	jsonBody, err := json.Marshal(todo)
 	if err != nil {
-		return []byte{}, err
+		return err
+	}
+	req, err := http.NewRequest(http.MethodGet, url, bytes.NewReader(jsonBody))
+	if err != nil {
+		return err
 	}
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return []byte{}, err
+		return err
 	}
 	defer resp.Body.Close()
-	body, err := io.ReadAll(resp.Body)
-	return body, err
+	if resp.StatusCode != 200 {
+		return errors.New("create not successful")
+	}
+	err = json.NewDecoder(resp.Body).Decode(todoList)
+	return err
 }
 
 // posodobimo zapis
-func update(url string, task string, body []byte) error {
-	bodyReader := bytes.NewReader(body)
-	req, err := http.NewRequest(http.MethodPut, url+task, bodyReader)
+func update(url string, todo storage.Todo) error {
+	jsonBody, err := json.Marshal(todo)
+	if err != nil {
+		return err
+	}
+	req, err := http.NewRequest(http.MethodPut, url + todo.Task, bytes.NewReader(jsonBody))
 	if err != nil {
 		return err
 	}
@@ -178,8 +181,8 @@ func update(url string, task string, body []byte) error {
 }
 
 // izbrišemo zapis
-func delete(url string, task string) error {
-	req, err := http.NewRequest(http.MethodDelete, url+task, nil)
+func remove(url string, todo storage.Todo) error {
+	req, err := http.NewRequest(http.MethodDelete, url + todo.Task, nil)
 	if err != nil {
 		return err
 	}
@@ -187,7 +190,7 @@ func delete(url string, task string) error {
 	if err != nil {
 		return err
 	}
-	defer resp.Body.Close()		// sprosti povezavo
+	defer resp.Body.Close()
 	if resp.StatusCode != 200 {
 		err = errors.New("delete not successful")
 	}
