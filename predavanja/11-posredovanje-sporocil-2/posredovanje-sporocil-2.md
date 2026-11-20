@@ -110,7 +110,7 @@
   - izboljšave s HTTP/2 (binarni protokol, multipleksiranje povezav), HTTP/3 lasten protokol nad UDP
 - zahteva in odgovor
   - lokacijo vira podamo z URL (*angl.* uniform resource locator), na primer `http://localhost:9876/todos/predavanja`; pot (`/todos/predavanja`) določa vir, neobvezen filter pa lahko dodamo za znakom `?`
-  - odjemalec v glavi zahteve med drugim poda želeni format, na primer `application/json`
+  - odjemalec v glavi z zahtevo `Accept` poda želeni format, na primer `application/json`
   - strežnik odgovori s sporočilom
     - v glavi so osnovne informacije: format zapisa, koda odgovora (100-199: informativno, 200-299: uspešno, 300-399: preusmeritev, 400-499: napaka odjemalca, 500-599: napaka strežnika)
     - v telesu se nahaja vsebina
@@ -140,6 +140,22 @@
   - odjemalec v jeziku go:
     - zahteve ustvarjamo s funkcijami iz paketa `net/http`: `Post`, `Get`, `NewRequest/Do`
     - pri vsaki zahtevi pravilno nastavimo naslov vira (URL), na primer `.../todos/predavanja`
+    - zahteve HTTP zavijemo v strukturo `TodoClient`, ki jo ustvarimo z naslovom strežnika
+
+      ```go
+      restClient := NewTodoClient(url)
+      ```
+
+    - metode strukture imajo enak odtis kot metode shrambe `TodoStorage`, zato jih kličemo, kot bi bile na voljo lokalno
+
+      ```go
+      err := restClient.Create(&lecturesCreate, &reply)
+      ```
+
+    - vsaka metoda je metoda na odjemalcu: argumente kodira v JSON, pošlje zahtevo z ustrezno metodo HTTP na naslov vira (na primer `.../todos/predavanja`), preveri kodo odgovora in odgovor dekodira
+    - zahteve pošiljamo s klicem `http.Client`, ki odprto povezavo ponovno uporabi
+      - za POST in GET imamo bližnjici `Post` in `Get` (metodi `Create` in `Read`)
+      - s klicema `http.NewRequest` in `Do` pošljemo zahteve za poljubno metodo HTTP z mnogimi dudatnimi nastavitvami (na primer `Accept``)
 
 ### go rpc
 
