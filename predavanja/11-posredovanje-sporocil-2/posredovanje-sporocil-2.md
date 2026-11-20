@@ -155,7 +155,7 @@
     - vsaka metoda je metoda na odjemalcu: argumente kodira v JSON, pošlje zahtevo z ustrezno metodo HTTP na naslov vira (na primer `.../todos/predavanja`), preveri kodo odgovora in odgovor dekodira
     - zahteve pošiljamo s klicem `http.Client`, ki odprto povezavo ponovno uporabi
       - za POST in GET imamo bližnjici `Post` in `Get` (metodi `Create` in `Read`)
-      - s klicema `http.NewRequest` in `Do` pošljemo zahteve za poljubno metodo HTTP z mnogimi dudatnimi nastavitvami (na primer `Accept``)
+      - s klicema `http.NewRequest` in `Do` pošljemo zahteve za poljubno metodo HTTP z mnogimi dudatnimi nastavitvami (na primer `Accept`)
 
 ### go rpc
 
