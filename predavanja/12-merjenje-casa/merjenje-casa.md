@@ -76,7 +76,7 @@
 - pošiljanje več zahtev za boljšo statistiko, lahko bi podatke pridobili z več strežnikov
 - dosežemo, da je običajen zamik ure največ nekaj milisekund, ob slabih pogojih lahko bistveno več
 - vzroki: omrežje, procesiranje
-- zadnja verzija: [RFC 5905](https://datatracker.ietf.org/doc/html/rfc5905) NTPv4 (2010)
+- zadnja verzija: NTPv4 ([RFC 5905](https://datatracker.ietf.org/doc/html/rfc5905), 2010)
 - shema
 
   <img src="slike/protokol-ntp.png" width="75%" />
