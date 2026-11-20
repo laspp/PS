@@ -7,6 +7,7 @@ package main
 import (
 	"fmt"
 	"net"
+	"os"
 	"time"
 
 	"github.com/DistributedClocks/GoVector/govec"
@@ -16,7 +17,7 @@ func Client(url string, message string) {
 	// dnevnik z vektorsko uro
 	hostname, _ := os.Hostname()
 	clientID := fmt.Sprintf("Client-%v-%v", hostname, os.Getpid())
-	logger := govec.InitGoVector("Client", "Log-Client", govec.GetDefaultConfig())
+	logger := govec.InitGoVector(clientID, "Log-Client", govec.GetDefaultConfig())
 	opts := govec.GetDefaultLogOptions()
 
 	// povežemo se na strežnik
@@ -41,7 +42,7 @@ func Client(url string, message string) {
 	// sprejmemo odgovor
 	bMsgRecvVC := make([]byte, 1024)
 	var bMsgRecv []byte
-	n, err = connection.Read(bMsgRecvVC)
+	n, err := connection.Read(bMsgRecvVC)
 	if err != nil {
 		panic(err)
 	}
