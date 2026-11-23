@@ -7,7 +7,7 @@
 
 #  Projektna naloga
 
-<br><br>
+<br><br><br>
 Ustvarite distribuirano spletno storitev **Klepec** po vzoru že kar nekaj časa mrtvega spletnega sogovornika [Petra Klepca](https://web.archive.org/web/20080831101935/http://klepec.amebis.si/), ki uporabnikom omogoča pogovor z velikim jezikovnim modelom, podobno kot storitve ChatGPT, Claude ali Gemini, le v manjšem obsegu.
 
 
