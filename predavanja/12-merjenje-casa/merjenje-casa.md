@@ -111,7 +111,7 @@
 
 - pri zaporednih procesih se vedno ena operacija izvede pred drugo, imamo vzročno povezavo prej-potem (*angl.* happened-before)
 - dogodek $X$ se je zgodil pred dogodkom $Y$, če velja
-  - $X$ in $Y$ tečeta na istem procesu in se je $X$ zgodil pred $Y$
+  - dogodka $X$ in $Y$ sta se zgodila na istem procesu in se je dogodek $X$ zgodil pred dogodkom $Y$
   - dogodek $X$ je trenutek odpošiljanja sporočila, dogodek $Y$ pa trenutek sprejema istega sporočila
   - obstaja dogodek $Z$, za katerega velja, da se je dogodek $X$ zgodil pred dogodkom $Z$ in dogodek $Z$ pred dogodkom $Y$
   - primer: po zajtrku pošljemo elektronsko pošto prijatelju, prijatelj jo prebere pred kosilom; zajtrkovali smo, preden je prijatelj kosil
