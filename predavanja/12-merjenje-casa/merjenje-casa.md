@@ -10,13 +10,13 @@
 ## Fizične ure [UDS:8.1]
 
 - na skoraj vseh računalniških sistemih ima proces dostop do fizične ure
-  - realni čas (*angl.* wall-clock time) in procesorski čas (*angl.* CPU time)
+  - realni/stenski čas (*angl.* wall-clock time) in procesorski čas (*angl.* CPU time)
 
 - merjenje realnega časa s kristalom kvarca
   - kristal kvarca je poceni in ni preveč natančen
   - frekvenca nihanja je odvisna od mnogih dejavnikov (proizvodni proces, temperatura)
   - zdrs ure (*angl.* clock drift) je relativna hitrost ure glede na točno uro
-    - merimo ga v enotah PPM (*angl.* parts-per-million, 1 ppm = 86,4 ms na dan), mikrosekundah na sekundo
+    - merimo ga v enotah PPM (*angl.* parts-per-million, 1 ppm = mikrosekunda na sekundo = 86,4 ms na dan)
   - zamik ure (*angl.* clock skew) je razlika med vrednostmi ur v nekem trenutku
   - uro s kristalom kvarca je treba periodično sinhronizirati
 
@@ -30,16 +30,16 @@
 - atomska in astronomska ura
   - Zemlja se ne vrti tako natančno, kot niha atom Cs-133
   - potrebno je usklajevanje ur
-  - čas UTC (*angl.* coordinated universal time, *fr* temps universel coordonné)
+  - čas UTC (*angl.* coordinated universal time, *fr.* temps universel coordonné)
     - od leta 1972 do 2016 so ga usklajevali z vrtenjem Zemlje
     - prestopna sekunda [*angl.* leap second](https://en.wikipedia.org/wiki/Leap_second): dvakrat na leto so po potrebi dodali sekundo, lahko bi jo tudi odvzeli
       - dodali so 27 sekund, zadnjo 31. 12. 2016; negativne sekunde ni bilo nikoli
       - od maja 2027 bo UTC zaostajal za časom TAI za 37 sekund.
+      - težave v programski opremi (hrošč v jedru Linux je pripeljal do živega objema; 30. 6. 2012 se je za eno uro ustavil rezervacijski sistem nekaterih avstralskih letalskih družb)
       - dan je lahko dolg 86.399, 86.400 ali 86.401 sekund
-      - težave v programski opremi (hrošč v jedru Linux je pripeljal do živega objema; 30. 6. 2012 se je za eno uro ustavil rezervacijski sistem letalskih družb Qantas in Virgin Australia
       - danes programska oprema prestopno sekundo uvaja postopno, čez daljše časovno obdobje (*angl.* leap smear)      
       - pri uporabi časovnih žigov v porazdeljenih sistemih so bile prestopne sekunde pomembne (pri analizi starih dnevnikov so še vedno)
-    - Generalna konferenca za uteži in mere (CGPM) je oktobra 2026 sklenila, da od 20. 5. 2027 UTC teče brez prestopnih sekund; razlika do astronomskega časa UT1 sme narasti do ene ure
+      - generalna konferenca za uteži in mere (CGPM) je oktobra 2026 sklenila, da od 20. 5. 2027 UTC teče brez prestopnih sekund; razlika do astronomskega časa UT1 sme narasti do ene ure
     - čas na operacijskem sistemu Linux šteje sekunde od 1. 1. 1970 00:00:00 UTC in prestopnih sekund ne pozna; operacijski sistem Windows šteje 100-nanosekundne intervale od 1. 1. 1601 00:00:00 UTC in prestopne sekunde podpira od Windows 10 (1809) naprej
 
 - protokol NTP za periodično sinhronizacijo ure
@@ -57,7 +57,7 @@
   - neuporabna pri primerjavi dogodkov med procesi
 
 - časi v jeziku go: [cas.go](koda/fizicna-ura/cas.go)
-  - paket `time`, struktura `time.Time` vključuje stenski čas s časovnim pasom in, če je vrne funckija `time.Now()`, še monotoni čas
+  - paket `time`, struktura `time.Time` vključuje stenski čas s časovnim pasom in, če jo vrne funckija `time.Now()`, še monotoni čas
   - primer izpisa
 
     ```bash
@@ -71,7 +71,7 @@
 
 ### Usklajevanje ur po protokolu NTP
 
-- stratum 0 so refernčne ure, ki niso priključene v omrežje (atomska ura ali sprejemnik GPS), strežnik stratum 1 je neposredno priključen na referenčno napravo, xtrežnik stratum 2 se usklajuje s strežnikom stratum 1, ..., stratum 16 pomeni neusklajen
+- stratum 0 so refernčne ure, ki niso priključene v omrežje (atomska ura ali sprejemnik GPS), strežnik stratum 1 je neposredno priključen na referenčno napravo, strežnik stratum 2 se usklajuje s strežnikom stratum 1, ..., stratum 16 pomeni neusklajen
 - operacijski sistem privzeto uporablja enega od strežnikov
 - pošiljanje več zahtev za boljšo statistiko, lahko bi podatke pridobili z več strežnikov
 - dosežemo, da je običajen zamik ure največ nekaj milisekund, ob slabih pogojih lahko bistveno več
@@ -171,6 +171,6 @@
   - če se dogodek $X$ ni zgodil pred $Y$ in se tudi dogodek $Y$ ni zgodil pred $X$, potem vzamemo, da sta dogodka sočasna
   - primer: dogodek $D_{A2}$ se je zgodil pred dogodkom $D_{B2}$, vrstnega reda dogodkov $D_{B1}$ in $D_{C1}$ pa ne moremo določiti – dogodka sta sočasna
 - problem vektorske ure so velike zahteve po pomnilniku in pasovni širini, obstajajo boljše rešitve
-  - HLC (*angl.* hybrid local clocks) povezujejo fizični čas in Lamportovo uro v 64-bitni zapis, uporabljata jih CockroachDB and MongoDB (izboljšana Lamportova ura, še vedno pa ne zna detektirati sočasnih dogodkov
+  - HLC (*angl.* hybrid local clocks) povezujejo fizični čas in Lamportovo uro v 64-bitni zapis, uporabljata jih CockroachDB in MongoDB (izboljšana Lamportova ura, še vedno pa ne zna detektirati sočasnih dogodkov
 - paket za vektorske ure v jeziku go: [GoVector](https://pkg.go.dev/github.com/DistributedClocks/GoVector/govec)
 - [vektorska ura](koda/vektorska-ura/vektorska-ura.go) ([strežnik](koda/vektorska-ura/streznik.go) in [odjemalec](koda/vektorska-ura/odjemalec.go))
