@@ -51,8 +51,9 @@ Storitev sestavljajo tri vrste vozlišč:
 
 Naslov prehoda inferenčnim strežnikom in shrambi podate kot argument ukazne vrstice, vse ostale naslove izvejo od prehoda. Dokler se ne registrirata vsaj en inferenčni strežnik in shramba, storitev ni dosegljiva.
 
-![shema](ShemaPS.png)
-
+<p align="center">
+  <img src="ShemaPS.png" alt="Centered image" width="70%">
+</p>
 Podano imate spodnjo specifikacijo v jeziku Protocol Buffer:
 
 - `Gateway` implementira prehod; kličejo ga odjemalci (`CreateUser`, `GetServingNode`), inferenčni strežniki (`Register`, `Heartbeat`) in shramba (`Register`),
