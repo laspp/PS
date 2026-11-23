@@ -20,13 +20,13 @@ Ustvarite distribuirano spletno storitev **Klepec** po vzoru že kar nekaj časa
 
 Za klepet s Petrom se lahko prijavijo **uporabniki**, ki z njim vodijo **pogovor**. V pogovoru uporabnik pošilja **sporočila**, model pa na vsako sporočilo odgovori. Vsak uporabnik ima en sam pogovor. Klepec hrani zgodovino pogovora, zato lahko uporabnik kadarkoli zapusti storitev, se vanjo vrne in pogovor nadaljuje. Uporabnik lahko svoj pogovor tudi izbriše in začne novega.
 
-Storitev napišite v programskem jeziku Go. Za izvajanje jezikovnega modela uporabite knjižnico [llama-go](https://github.com/liminalpurple/llama-go), ki je ovojnica okrog knjižnice [llama.cpp](https://github.com/ggml-org/llama.cpp). Za komunikacijo med vozlišči in z odjemalci (uporabniki) uporabite ogrodje **gRPC**. Prav tako napišite odjemalca, ki bo znal komunicirati s strežnikom in bo podpiral vse operacije, ki jih ponuja Klepec.
+Storitev napišite v programskem jeziku Go. Za izvajanje jezikovnega modela uporabite knjižnico [llama-go](https://github.com/liminalpurple/llama-go), ki je ovojnica okrog knjižnice [llama.cpp](https://github.com/ggml-org/llama.cpp). Za komunikacijo med strežniškimi vozlišči in z odjemalci (uporabniki) uporabite ogrodje **gRPC**. Prav tako napišite odjemalca, ki bo znal komunicirati s strežnikom in bo podpiral vse operacije, ki jih ponuja Klepec.
 
 ## Jezikovni model in knjižnica llama-go
 
-Knjižnica llama-go omogoča, da jezikovni model poganjamo neposredno v programu Go, brez zunanjih storitev ali programskih vmesnikov v oblaku. Llama-go prek vmesnika CGO kliče funkcije knjižnice llama.cpp, ki modele v formatu GGUF izvaja lokalno na procesorju ali grafičnem pospeševalniku. Pri delu z njo ločimo dva pojma: **model** (`llama.Model`) hrani uteži modela in ga naložimo enkrat, **kontekst** (`llama.Context`) pa je delovno stanje, v katerem model obdeluje poziv in generira odgovor. Za klepet llama-go ponuja klica `Chat`, ki vrne celoten odgovor naenkrat, in `ChatStream`, ki odgovor vrača sproti, žeton za žetonom.
+Knjižnica llama-go omogoča, da jezikovni model poganjamo neposredno v programu Go, brez zunanjih storitev ali programskih vmesnikov v oblaku. Llama-go prek vmesnika CGO kliče funkcije knjižnice llama.cpp, ki modele v formatu GGUF izvaja lokalno na procesorju ali grafičnem pospeševalniku. Pri delu z njo ločimo dva pojma: **model** (`llama.Model`) hrani uteži modela in ga naložimo enkrat, **kontekst** (`llama.Context`) pa je delovno stanje, v katerem model obdeluje poziv in generira odgovor nanj. Za klepet llama-go ponuja klica `Chat`, ki vrne celoten odgovor naenkrat, in `ChatStream`, ki odgovor vrača sproti, žeton za žetonom.
 
-Pri vsakem odgovoru model najprej prebere celoten pogovor do tistega trenutka in pri tem v pomnilniku zgradi predpomnilnik KV (*angl. KV cache*), ki je vezan na kontekst. Če naslednje sporočilo nadaljuje trenutni pogovor, llama.cpp ponovno uporabi del predpomnilnika, zgrajen na podlagi dosedanjih sporočil (*angl. prefix caching*), zato se odgovor začne bistveno hitreje. Zato produkcijske storitve poskušajo uporabnika vedno znova usmeriti na isti strežnik.
+Pri vsakem odgovoru model najprej prebere celoten pogovor do tistega trenutka in pri tem v pomnilniku zgradi predpomnilnik KV (*angl. KV cache*), ki je vezan na kontekst. Če naslednje sporočilo nadaljuje trenutni pogovor, llama.cpp ponovno uporabi del predpomnilnika, zgrajenega na podlagi dosedanjih sporočil (*angl. prefix caching*), zato se odgovor začne bistveno hitreje. To je tudi razlog, da produkcijske storitve poskušajo uporabnika vedno znova usmeriti na isti strežnik.
 
 - Uporabite manjši model v formatu GGUF, ki teče na procesorju, na primer **Qwen3-0.6B** ali **Qwen3-1.7B**. Modele najdete na spletni strani [Hugging Face](https://huggingface.co/). Model Qwen3-1.7B je na voljo na [tej povezavi](https://huggingface.co/Qwen/Qwen3-1.7B-GGUF/tree/main).  
 - Knjižnica `llama-go` uporablja CGO in jo je treba pred uporabo prevesti. Sledite navodilom v [repozitoriju](https://github.com/liminalpurple/llama-go). Če pri prevajanju programa dobite napake zaradi manjkajoče knjižnice OpenSSL, knjižnico prevedite z ukazom `CMAKE_ARGS="-DLLAMA_OPENSSL=OFF" make libbinding.a`.
@@ -248,7 +248,7 @@ message AppendTurnResponse {
 ```
 Odjemalec najprej pri prehodu z `GetServingNode` izve naslov svojega inferenčnega strežnika, nato pa vse klice `ChatService` pošilja neposredno temu strežniku. Če inferenčni strežnik odgovori z napako, odjemalec ponovno vpraša prehod za podatke o strežniku. 
 
-Odjemalec pred začetkom pogovora pri svojem inferenčnem strežniku odpre tok `Connect` in ga drži odprtega, dokler odjemalec teče. Odprt tok pomeni, da je odjemalec povezan; ko se odjemalec zapre ali odpove, se tok prekine in strežnik to zazna. Po tem toku strežnik odjemalcu pošilja tudi obvestila o spremembah pogovora.
+Odjemalec pred začetkom pogovora pri svojem inferenčnem strežniku odpre tok s klicem `Connect` in ga drži odprtega, dokler odjemalec teče. Ko se odjemalec zapre ali odpove, se tok prekine in strežnik to zazna. Po toku strežnik odjemalcu pošilja obvestila o dogodkih povezanih s pogovorom.
 
 Če odjemalec klic `SendMessage` prekliče, mu poteče rok ali pade povezava, strežnik generiranje ustavi ter sporočila in odgovora ne shrani. Če povezava pade šele po tem, ko sta sporočilo in odgovor shranjena, ostaneta v shrambi; odjemalec ju dobi, ko zahtevo ponovi z istim `request_id` ali z `GetHistory`.
 
@@ -299,14 +299,14 @@ Vaša naloga je, da implementirate zgornji programski vmesnik storitve in pripra
    - Prehod uporabnike razporeja med inferenčne strežnike (vsaj dva) z zgoščevanjem `user_id`. Razporeditev mora imeti naslednje lastnosti: 
      - uporabnik je vedno usmerjen na isti strežnik, zato se lahko obstoječi kontekst ponovno uporabi; 
      - uporabniki so med strežnike razporejeni približno enakomerno; 
-     - ob odpovedi strežnika se preselijo le njegovi uporabniki, ob prijavi novega pa le približno 1/N uporabnikov.
+     - ob odpovedi strežnika se preselijo le njegovi uporabniki, ob prijavi novega pa sorazmeren delež uporabnikov.
 
       Primera takih razporejanj sta [dosledno zgoščevanje](https://dl.acm.org/doi/10.1145/258533.258660) (*angl. consistent hashing*) z navideznimi vozlišči in [zgoščevanje rendezvous](https://en.wikipedia.org/wiki/Rendezvous_hashing) (*angl. rendezvous hashing*). 
     - Uporabnik je lahko hkrati povezan le z enim odjemalcem: če se z istim `user_id` poveže še drug odjemalec, ga inferenčni strežnik zavrne z napako. Ko se prvi odjemalec odjavi ali odpove, se lahko poveže drug. 
 
  - **Ocena 9–10:** Kot pri oceni 7–8, le da inferenčni strežniki niso zanesljivi in lahko odpovejo. Prehod in shramba ostaneta zanesljiva.
     - Ob odpovedi inferenčnega strežnika prehod prerazporedi uporabnike na ostale strežnike.
-    - Med delovanjem storitve naj bo možno dodati nov inferenčni strežnik, nanj naj se preseli približno 1/N uporabnikov, ostali ostanejo na svojih strežnikih.
+    - Med delovanjem storitve naj bo možno dodati nov inferenčni strežnik, nanj naj se preseli sorazmeren delež uporabnikov, ostali ostanejo na svojih strežnikih.
     - Inferenčni strežnik streže le uporabnikom, za katere je odgovoren; ostale zavrne z napako. Odgovornost določi iz seznama aktivnih strežnikov na enak način kot prehod.
     - Omogočite, da je uporabnik lahko hkrati povezan z več odjemalci (na primer na prenosniku in telefonu), ki se s storitvijo pogovarjajo sočasno. Poskrbite za ustrezno usklajevanje pogovorov. 
 
