@@ -51,7 +51,7 @@ Storitev sestavljajo tri vrste vozlišč:
 
 Naslov prehoda inferenčnim strežnikom in shrambi podate kot argument ukazne vrstice, vse ostale naslove izvejo od prehoda. Dokler se ne registrirata vsaj en inferenčni strežnik in shramba, storitev ni dosegljiva.
 
-![shema](shemaPS.png)
+![shema](ShemaPS.png)
 
 Podano imate spodnjo specifikacijo v jeziku Protocol Buffer:
 
