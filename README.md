@@ -4,6 +4,8 @@
 
 ## Kazalo
 
+[Navodila](projektna-naloga/navodila.md) za izdelavo projektne naloge. Rok za oddajo **20. 1. 2027.**
+
 ### Uvod
 
 - Teden 01:
