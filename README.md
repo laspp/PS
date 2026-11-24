@@ -56,4 +56,4 @@
 - Teden 08:
   - predavanja:
     [merjenje časa](predavanja/12-merjenje-casa/merjenje-casa.md)
-  - vaje: [posredovanje sporočil](vaje/07-posredovanje-sporocil.md)
+  - vaje: [posredovanje sporočil](vaje/07-posredovanje-sporocil/Posredovanje-sporocil.md)
